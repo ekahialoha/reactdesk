@@ -15,6 +15,7 @@ export default class App extends Component {
 
                             <div className="card-body">
                                 I'm an example component!
+                                <hr />
                                 <Link to="/test">Test</Link>
                             </div>
                         </div>
@@ -34,6 +35,7 @@ export default class App extends Component {
 
                             <div className="card-body">
                                 I'm an test component!
+                                <hr />
                                 <Link to="/">Home</Link>
                             </div>
                         </div>
