@@ -50,7 +50,6 @@ export default class App extends Component {
             <Switch>
                 <Route exact path="/" component={this.index} />
                 <Route path="/test" component={this.test} />
-
             </Switch>
         );
     }
