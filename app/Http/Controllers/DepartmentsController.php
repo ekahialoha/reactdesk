@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Department;
 use App\Http\Resources\Department as DepartmentResource;
 use \stdClass;
@@ -38,17 +39,16 @@ class DepartmentsController extends Controller
 
     public function show($id)
     {
-        $department = Department::find($id);
-
-        if (empty($department)) {
-            $return = [
-                'status' => 404,
-                'data' => new stdClass
-            ];
-        } else {
+        try {
+            $department = Department::findOrFail($id);
             $return = [
                 'status' => 200,
                 'data' => new DepartmentResource($department)
+            ];
+        } catch (ModelNotFoundException $e) {
+            $return = [
+                'status' => 404,
+                'data' => new stdClass
             ];
         }
 
@@ -57,31 +57,34 @@ class DepartmentsController extends Controller
 
     public function update(Request $request, $id)
     {
-        $department = Department::find($id);
-        $department->name = $request->input('name');
-        $department->description = $request->input('description');
-        $department->status = $request->input('status');
-        $department->save();
+        try {
+            $department = Department::findOrFail($id);
+            $department->name = $request->input('name');
+            $department->description = $request->input('description');
+            $department->status = $request->input('status');
+            $department->save();
 
-        $return = [
-            'status' => 200,
-            'data' =>new DepartmentResource($department)
-        ];
+            $return = [
+                'status' => 200,
+                'data' => new DepartmentResource($department)
+            ];
+        } catch (ModelNotFoundException $e) {
+
+            $return = [
+                'status' => 404,
+                'data' => new stdClass
+            ];
+        }
 
         return response()->json($return, $return['status']);
     }
 
     public function destroy($id)
     {
-        $department = Department::find($id);
-
         $data = new stdClass;
-        if (empty($department)) {
-            $return = [
-                'status' => 403,
-                'data' => $data,
-            ];
-        } else {
+
+        try {
+            $department = Department::findOrFail($id);
             $department->delete();
 
             $data->deleted = true;
@@ -89,6 +92,11 @@ class DepartmentsController extends Controller
             $return = [
                 'status' => 200,
                 'data' => $data
+            ];
+        } catch (ModelNotFoundException $e) {
+            $return = [
+                'status' => 403,
+                'data' => $data,
             ];
         }
 
