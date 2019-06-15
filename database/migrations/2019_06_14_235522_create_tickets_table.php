@@ -15,7 +15,7 @@ class CreateTicketsTable extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('track_id', 8);
+            $table->string('track_id', 12);
             $table->unsignedBigInteger('department_id');
             $table->string('name', 80)->nullable();
             $table->string('email');

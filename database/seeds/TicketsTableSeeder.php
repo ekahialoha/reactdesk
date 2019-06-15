@@ -1,11 +1,13 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Traits\CreateTrackId;
 use App\Ticket;
 use Faker\Factory as Faker;
 
 class TicketsTableSeeder extends Seeder
 {
+    use CreateTrackId;
     /**
      * Run the database seeds.
      *
@@ -17,11 +19,9 @@ class TicketsTableSeeder extends Seeder
 
         $faker = Faker::create();
 
-        $trackIds = ['350-BJWW', '480-OWLQ', '221-PLSC', '892-MMSN'];
-
-        foreach ($trackIds as $id) {
+        for ($i = 0; $i < 10; $i++) {
             Ticket::create([
-                'track_id' => $id,
+                'track_id' => $this->generateTrackId(),
                 'department_id' => 1,
                 'name' => $faker->name,
                 'email' => $faker->email,
