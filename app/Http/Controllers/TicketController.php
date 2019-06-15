@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Ticket;
 use App\Http\Resources\Ticket as TicketResource;
-use App\Http\Resources\Department as DepartmentResource;
+use App\Ticket;
 
 class TicketController extends Controller
 {
@@ -13,7 +12,14 @@ class TicketController extends Controller
     public function index()
     {
         $tickets = Ticket::all();
-        return response()->json(TicketResource::collection($tickets));
+        $tickets->loadMissing('department');
+
+        $return = [
+            'status' => 200,
+            'data' => TicketResource::collection($tickets)
+        ];
+
+        return response()->json($return, $return['status']);
     }
 
     public function store(Request $request)

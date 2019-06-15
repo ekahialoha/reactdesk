@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use \App\Http\Resources\Department as DepartmentResource;
 
 class Ticket extends JsonResource
 {
@@ -17,7 +18,7 @@ class Ticket extends JsonResource
         return [
             'id' => $this->id,
             'track_id' => $this->track_id,
-            'department' => $this->department,
+            'department' => new DepartmentResource($this->whenLoaded('department')),
             'name' => $this->name,
             'email' => $this->email,
             'subject' => $this->subject,
