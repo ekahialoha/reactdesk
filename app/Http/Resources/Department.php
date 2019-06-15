@@ -20,9 +20,7 @@ class Department extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
-            'status' => $this->status,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at
+            'status' => $this->status
         ];
     }
 }
