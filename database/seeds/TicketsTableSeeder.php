@@ -27,7 +27,7 @@ class TicketsTableSeeder extends Seeder
                 'email' => $faker->email,
                 'subject' => $faker->sentence(3),
                 'message' => $faker->paragraphs(3, true),
-                'prioity' => 1
+                'priority' => 1
             ]);
         }
     }
