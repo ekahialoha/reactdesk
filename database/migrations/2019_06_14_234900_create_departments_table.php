@@ -18,6 +18,8 @@ class CreateDepartmentsTable extends Migration
             $table->string('name', 45);
             $table->string('description', 175);
             $table->smallInteger('status');
+            $table->timestamps();
+
         });
     }
 
