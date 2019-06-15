@@ -21,7 +21,7 @@ class CreateTicketsTable extends Migration
             $table->string('email');
             $table->string('subject');
             $table->text('message');
-            $table->unsignedTinyInteger('prioity');
+            $table->unsignedTinyInteger('priority')->default(1);
             $table->timestamps();
             $table->softDeletes();
 
