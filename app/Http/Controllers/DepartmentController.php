@@ -9,7 +9,7 @@ use App\Http\Resources\Department as DepartmentResource;
 use \stdClass;
 
 
-class DepartmentsController extends Controller
+class DepartmentController extends Controller
 {
     public function index()
     {
