@@ -51,7 +51,21 @@ class TicketController extends Controller
 
     public function show($id)
     {
-        //
+        try {
+            $ticket = Ticket::findOrFail($id);
+
+            $return = [
+                'status' => 200,
+                'data' => new TicketResource($ticket)
+            ];
+        } catch (ModelNotFoundException $e) {
+            $return = [
+                'status' => 404,
+                'data' => new stdClass
+            ];
+        }
+
+        return response()->json($return, $return['status']);
     }
 
 
