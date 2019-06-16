@@ -8,7 +8,7 @@ class App extends Component {
     render() {
         return (
             <React.Fragment>
-                <div>ReactDesk</div>
+                <h1>ReactDesk</h1>
                 <Switch>
                     <Redirect exact from="/" to ="/ticket/new" />
                     <Route exact path="/ticket/new" component={DepartmentList} />
