@@ -41,7 +41,21 @@ class ReplyController extends Controller
 
     public function show($id)
     {
-        //
+        try {
+            $reply = Reply::findOrFail($id);
+
+            $return = [
+                'status' => 200,
+                'data' => new ReplyResource($reply)
+            ];
+        } catch (ModelNotFoundException $e) {
+            $return = [
+                'status' => 404,
+                'data' => new stdClass
+            ];
+        }
+
+        return response()->json($return, $return['status']);
     }
 
     public function update(Request $request, $id)
