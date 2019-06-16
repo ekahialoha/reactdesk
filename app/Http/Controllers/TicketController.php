@@ -99,6 +99,25 @@ class TicketController extends Controller
 
     public function destroy($id)
     {
-        //
+        $data = new stdClass;
+
+        try {
+            $ticket = Ticket::findOrFail($id);
+            $ticket->delete();
+
+            $data->deleted = true;
+
+            $return = [
+                'status' => 200,
+                'data' => $data
+            ];
+        } catch (ModelNotFoundException $e) {
+            $return = [
+                'status' => 403,
+                'data' => $data
+            ];
+        }
+
+        return response()->json($return, $return['status']);
     }
 }
