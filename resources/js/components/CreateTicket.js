@@ -6,12 +6,12 @@ class CreateTicket extends Component {
         super(props);
 
         this.state = {
-            'department': {},
-            'name': '',
-            'email': '',
-            'subject': '',
-            'message': '',
-            'priority': 0
+            department: {},
+            name: '',
+            email: '',
+            subject: '',
+            message: '',
+            priority: 0
         };
     }
 
@@ -44,16 +44,20 @@ class CreateTicket extends Component {
         e.preventDefault();
         console.log(this.state);
         axios.post('/api/tickets', {
-            
-        })
-        .then(res => {
-            console.log('');
+            name: this.state.name,
+            department_id: this.state.department.id,
+            email: this.state.email,
+            subject: this.state.subject,
+            message: this.state.message,
+            priority: this.state.priority
+        }).then(res => {
+            console.log('CreateTicket.handleSubmit SUCCESS');
             this.setState({
-                'name': '',
-                'email': '',
-                'subject': '',
-                'message': '',
-                'priority': 0
+                name: '',
+                email: '',
+                subject: '',
+                message: '',
+                priority: 0
             });
         }).catch(err => {
             console.log('CreateTicket.handleSubmit', err);
@@ -105,8 +109,6 @@ class CreateTicket extends Component {
 
                     <button>Create Ticket</button>
                 </form>
-
-
             </div>
         );
     }

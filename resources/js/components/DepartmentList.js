@@ -6,7 +6,7 @@ class DepartmentList extends Component {
         super(props);
 
         this.state = {
-            'departments': []
+            departments: []
         };
     }
 
@@ -14,7 +14,7 @@ class DepartmentList extends Component {
         axios.get('/api/departments')
         .then(res => {
             this.setState({
-                'departments': res.data
+                departments: res.data
             }, () => {
                 console.log(this.state.departments);
             });
