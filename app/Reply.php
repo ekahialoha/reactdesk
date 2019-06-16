@@ -8,6 +8,6 @@ class Reply extends Model
 {
     public function ticket()
     {
-        return $this->hasOne(Ticket::class);
+        return $this->belongsTo(Ticket::class);
     }
 }
