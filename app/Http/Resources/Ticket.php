@@ -19,6 +19,7 @@ class Ticket extends JsonResource
             'id' => $this->id,
             'track_id' => $this->track_id,
             'department' => new DepartmentResource($this->whenLoaded('department')),
+            'replies' => $this->whenLoaded('replies'),
             'name' => $this->name,
             'email' => $this->email,
             'subject' => $this->subject,

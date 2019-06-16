@@ -18,7 +18,7 @@ class TicketController extends Controller
     public function index()
     {
         $tickets = Ticket::all();
-        $tickets->loadMissing('department');
+        $tickets->loadMissing(['department', 'replies']);
 
         $return = [
             'status' => 200,
