@@ -99,6 +99,7 @@ class CreateTicket extends Component {
                     ></textarea>
                     <select
                             required
+                            value={this.state.priority}
                             id="priority"
                             onChange={this.handleChanges}
                     >
