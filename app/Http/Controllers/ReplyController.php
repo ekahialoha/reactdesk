@@ -19,7 +19,7 @@ class ReplyController extends Controller
                 'data' => ReplyResource::collection($replies)
         ];
 
-        return response()->json($return, $return['status']);
+        return response()->json($return['data'], $return['status']);
     }
 
     public function store(Request $request)
@@ -36,7 +36,7 @@ class ReplyController extends Controller
             'data' => new ReplyResource($reply)
         ];
 
-        return response()->json($return, $return['status']);
+        return response()->json($return['data'], $return['status']);
     }
 
     public function show($id)
@@ -55,7 +55,7 @@ class ReplyController extends Controller
             ];
         }
 
-        return response()->json($return, $return['status']);
+        return response()->json($return['data'], $return['status']);
     }
 
     public function update(Request $request, $id)
@@ -79,7 +79,7 @@ class ReplyController extends Controller
             ];
         }
 
-        return response()->json($return, $return['status']);
+        return response()->json($return['data'], $return['status']);
     }
 
     public function destroy($id)
@@ -103,6 +103,6 @@ class ReplyController extends Controller
             ];
         }
 
-        return response()->json($return, $return['status']);
+        return response()->json($return['data'], $return['status']);
     }
 }

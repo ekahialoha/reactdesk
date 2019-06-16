@@ -25,7 +25,7 @@ class TicketController extends Controller
             'data' => TicketResource::collection($tickets)
         ];
 
-        return response()->json($return, $return['status']);
+        return response()->json($return['data'], $return['status']);
     }
 
     public function store(Request $request)
@@ -45,7 +45,7 @@ class TicketController extends Controller
             'data' => new TicketResource($ticket)
         ];
 
-        return response()->json($return, $return['status']);
+        return response()->json($return['data'], $return['status']);
     }
 
 
@@ -65,7 +65,7 @@ class TicketController extends Controller
             ];
         }
 
-        return response()->json($return, $return['status']);
+        return response()->json($return['data'], $return['status']);
     }
 
 
@@ -94,7 +94,7 @@ class TicketController extends Controller
             ];
         }
 
-        return response()->json($return, $return['status']);
+        return response()->json($return['data'], $return['status']);
     }
 
     public function destroy($id)
@@ -118,6 +118,6 @@ class TicketController extends Controller
             ];
         }
 
-        return response()->json($return, $return['status']);
+        return response()->json($return['data'], $return['status']);
     }
 }

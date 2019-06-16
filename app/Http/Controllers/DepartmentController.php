@@ -18,7 +18,7 @@ class DepartmentController extends Controller
             'data' => DepartmentResource::collection(Department::all())
         ];
 
-        return response()->json($return, $return['status']);
+        return response()->json($return['data'], $return['status']);
     }
 
     public function store(Request $request)
@@ -34,7 +34,7 @@ class DepartmentController extends Controller
             'data' => new DepartmentResource($department)
         ];
 
-        return response()->json($return, $return['status']);
+        return response()->json($return['data'], $return['status']);
     }
 
     public function show($id)
@@ -76,7 +76,7 @@ class DepartmentController extends Controller
             ];
         }
 
-        return response()->json($return, $return['status']);
+        return response()->json($return['data'], $return['status']);
     }
 
     public function destroy($id)
@@ -100,6 +100,6 @@ class DepartmentController extends Controller
             ];
         }
 
-        return response()->json($return, $return['status']);
+        return response()->json($return['data'], $return['status']);
     }
 }
