@@ -52,7 +52,11 @@ class TicketController extends Controller
     public function show($id)
     {
         try {
-            $ticket = Ticket::findOrFail($id);
+            if (is_numeric($id)) {
+                $ticket = Ticket::findOrFail($id);
+            } else {
+                $ticket = Ticket::where('track_id', $id)->firstOrFail();
+            }
 
             $return = [
                 'status' => 200,
