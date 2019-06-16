@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route, Link, Redirect } from 'react-router-dom';
 
-import DepartmentList from './DepartmentList.js';
+import DepartmentList from './DepartmentList';
+import CreateTicket from './CreateTicket';
 
 class App extends Component {
     render() {
@@ -12,6 +13,7 @@ class App extends Component {
                 <Switch>
                     <Redirect exact from="/" to ="/ticket/new" />
                     <Route exact path="/ticket/new" component={DepartmentList} />
+                    <Route path="/ticket/new/:id" component={CreateTicket} />
                 </Switch>
             </React.Fragment>
         );
