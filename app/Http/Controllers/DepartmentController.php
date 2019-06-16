@@ -52,7 +52,7 @@ class DepartmentController extends Controller
             ];
         }
 
-        return response()->json($return, $return['status']);
+        return response()->json($return['data'], $return['status']);
     }
 
     public function update(Request $request, $id)
