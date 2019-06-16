@@ -57,6 +57,7 @@ class TicketController extends Controller
             } else {
                 $ticket = Ticket::where('track_id', $id)->firstOrFail();
             }
+            $ticket->loadMissing(['department', 'replies', 'replies.user']);
 
             $return = [
                 'status' => 200,
