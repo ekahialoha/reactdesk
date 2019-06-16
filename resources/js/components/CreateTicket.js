@@ -15,7 +15,7 @@ class CreateTicket extends Component {
         };
     }
 
-    fetchDepartments = () => {
+    fetchDepartment = () => {
         axios.get(`/api/departments/${this.props.match.params.id}`)
         .then(res => {
             console.log(res);
@@ -25,12 +25,12 @@ class CreateTicket extends Component {
                 console.log(this.state.department);
             });
         }).catch(err => {
-            console.log('CreateTicket.fetchDepartments', err)
+            console.log('CreateTicket.fetchDepartment', err)
         });
     }
 
     componentDidMount = () => {
-        this.fetchDepartments();
+        this.fetchDepartment();
         console.log(this.props.match.params.id);
     }
 
@@ -40,11 +40,31 @@ class CreateTicket extends Component {
         });
     }
 
+    handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(this.state);
+        axios.post('/api/tickets', {
+            
+        })
+        .then(res => {
+            console.log('');
+            this.setState({
+                'name': '',
+                'email': '',
+                'subject': '',
+                'message': '',
+                'priority': 0
+            });
+        }).catch(err => {
+            console.log('CreateTicket.handleSubmit', err);
+        });
+    }
+
     render() {
         return (
             <div>
                 <h2>Create Ticket - {this.state.department.name}</h2>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <input required
                             type="text"
                             value={this.state.name}
