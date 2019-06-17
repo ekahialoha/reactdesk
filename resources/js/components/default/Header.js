@@ -68,7 +68,7 @@ class Header extends Component {
                             let className = 'nav-link';
 
                             if (tab.id === this.props.tab ||
-                                tab.id === this.state.defaultTab.id && !this.useDefault) {
+                                tab.id === this.state.defaultTab.id && this.state.useDefault) {
                                 className += ' active';
                             }
 
