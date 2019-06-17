@@ -32,7 +32,7 @@ class DepartmentList extends Component {
     render() {
         return (
             <div>
-                <Header />
+                <Header tab="newticket" />
                 <h2>Select Department</h2>
                 <ul>
                     {this.state.departments.map(department => {

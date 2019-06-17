@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 const moment = require('moment');
 
+import Header from './default/Header';
+
 class CreateTicket extends Component {
     constructor(props) {
         super(props);
@@ -35,6 +37,7 @@ class CreateTicket extends Component {
     render() {
         return (
             <div>
+                <Header tab="manageticket" />
                 <h2>ViewTicket</h2>
                 <h3>{this.state.ticket.subject} - {this.state.ticket.track_id}</h3>
                 <section>
