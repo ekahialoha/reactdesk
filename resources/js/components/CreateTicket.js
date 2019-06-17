@@ -34,7 +34,6 @@ class CreateTicket extends Component {
 
     componentDidMount = () => {
         this.fetchDepartment();
-        console.log(this.props.match.params.id);
     }
 
     handleChanges = (e) => {
