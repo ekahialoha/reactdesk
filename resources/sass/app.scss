@@ -17,6 +17,10 @@ header {
     margin-bottom: 2em;
 }
 
+textarea.form-control {
+  height: 10em;
+}
+
 .logo-block {
     color: $offwhite;
     font-family: $logo-font-family;
@@ -71,11 +75,21 @@ header {
     text-decoration: none;
 }
 
+h2 {
+    border-bottom: 1px solid $pale-cyan;
+    font-family: $logo-font-family;
+    letter-spacing: .2em;
+    margin-bottom: .6em;
+    padding-bottom: .3em;
+    text-transform: uppercase;
+}
+
 .footer {
     background-color: $eggplant;
     border-top: 1px solid $light-blue;
     color: $offwhite !important;
     font-size: .9em;
+    margin-top: 2em;
     padding: .8em 0 .1em 0;
     text-align: center;
 }
