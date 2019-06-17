@@ -10,7 +10,6 @@ class App extends Component {
     render() {
         return (
             <React.Fragment>
-                <h1>ReactDesk</h1>
                 <Switch>
                     <Redirect exact from="/" to ="/ticket/new" />
                     <Route exact path="/ticket/new" component={DepartmentList} />

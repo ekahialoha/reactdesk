@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import Header from './default/Header';
+
 class DepartmentList extends Component {
     constructor(props) {
         super(props);
@@ -30,6 +32,7 @@ class DepartmentList extends Component {
     render() {
         return (
             <div>
+                <Header />
                 <h2>Select Department</h2>
                 <ul>
                     {this.state.departments.map(department => {

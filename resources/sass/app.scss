@@ -1,8 +1,33 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz');
 
 // Variables
 @import 'variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+header {
+    background: $light-blue;
+    pading-bottom: 2em;
+}
+
+.logo-block {
+    color: $offwhite;
+    font-family: $logo-font-family;
+    letter-spacing: .4em;
+    padding: 1em 2em;
+}
+
+.logo-block > i {
+    font-size: 2.25em;
+}
+
+.logo-block > h1 {
+    display: inline-block;
+    font-size: 2.5em;
+}
+
+.nav {
+    margin-left: 2em;
+}

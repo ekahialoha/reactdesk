@@ -7,6 +7,7 @@
 
         <title>Laravel</title>
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        <script src="https://kit.fontawesome.com/28ef3af82a.js"></script>
     </head>
     <body>
         <div id="root">
