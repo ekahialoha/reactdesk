@@ -10,11 +10,11 @@ class Header extends Component {
         return (
             <header>
                 <div className="logo-block">
-                    <i class="fas fa-life-ring"></i>
+                    <i className="fas fa-life-ring"></i>
                     <h1>ReactDesk</h1>
                 </div>
                 <nav className="nav-tabs">
-                    <ul class="nav">
+                    <ul className="nav">
                         <li className="nav-item">
                             <Link to="/test" className="nav-link active">New Ticket</Link>
                         </li>
