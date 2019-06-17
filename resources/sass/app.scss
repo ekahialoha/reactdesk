@@ -103,15 +103,12 @@ h2 {
     color: $offwhite;
 }
 
-.footer a:hover {
+.footer a:hover, .footer > div a:hover {
     text-decoration: none;
+    color: $light-blue !important;
 }
 
 .footer i {
     font-size: 1.7em;
     margin-right: .3em;
-}
-
-.footer > div a:hover {
-    color: $light-blue;
 }
