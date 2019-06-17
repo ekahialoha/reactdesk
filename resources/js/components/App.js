@@ -5,6 +5,7 @@ import { BrowserRouter, Switch, Route, Link, Redirect } from 'react-router-dom';
 import DepartmentList from './DepartmentList';
 import CreateTicket from './CreateTicket';
 import ViewTicket from './ViewTicket';
+import ManageTicket from './default/ManageTicket';
 
 class App extends Component {
     render() {
@@ -15,6 +16,7 @@ class App extends Component {
                     <Route exact path="/ticket/new" component={DepartmentList} />
                     <Route path="/ticket/new/:id" component={CreateTicket} />
                     <Route path="/ticket/view/:track_id" component={ViewTicket} />
+                    <Route path="/ticket/manage" component={ManageTicket} />
                 </Switch>
             </React.Fragment>
         );
