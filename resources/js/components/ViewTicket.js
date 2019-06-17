@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col, Badge } from 'react-bootstrap';
+import { Container, Row, Col, Badge, ListGroup } from 'react-bootstrap';
 
 const moment = require('moment');
 
@@ -84,29 +84,34 @@ class CreateTicket extends Component {
                         </dl>
                     </Col>
                 </Row>
-                <section>
-                    <h4>
-                        {this.state.ticket.name}
-                        <small>{moment(this.state.ticket.created_at).calendar()}</small>
-                    </h4>
-                    <p>{this.state.ticket.message}</p>
-                </section>
+                <ListGroup>
+                    <ListGroup.Item>
+                        <div className="message-block">
+                            <h4>{this.state.ticket.name}</h4>
+                            <small>{moment(this.state.ticket.created_at).calendar()}</small>
+                        </div>
+                        <p>{this.state.ticket.message}</p>
+                    </ListGroup.Item>
+
                 {this.state.ticket.replies.map((reply) => {
                     reply.created_at = moment(reply.created_at).calendar();
                     return (
-                        <section key={reply.id}>
-                            {reply.user ?
-                                <h4>
-                                    {reply.user.name}
-                                    <Badge variant="success">STAFF</Badge>
-                                    <small>{reply.created_at}</small>
-                                </h4> :
-                                <h4>{reply.name} <small>{reply.created_at}</small></h4>
-                            }
+                        <ListGroup.Item key={reply.id}>
+                            <div className="message-block">
+                                {reply.user ?
+                                    <h4>
+                                        {reply.user.name}
+                                        <Badge variant="success">STAFF</Badge>
+                                    </h4> :
+                                    <h4>{reply.name}</h4>
+                                }
+                                <small>{reply.created_at}</small>
+                            </div>
                             <p>{reply.message}</p>
-                        </section>
+                        </ListGroup.Item>
                     );
                 })}
+                </ListGroup>
                 </Container>
                 <Footer />
             </React.Fragment>

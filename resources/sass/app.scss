@@ -22,6 +22,10 @@ textarea.form-control {
   height: 10em;
 }
 
+dt {
+    font-weight: bold;
+}
+
 .logo-block {
     color: $offwhite;
     font-family: $logo-font-family;
@@ -52,25 +56,28 @@ textarea.form-control {
 }
 
 .nav-tabs {
-    border-bottom: 1px solid $pale-cyan;
+    border-bottom: 1px solid $eggplant;
 }
 
 .nav-tabs .nav-link.active {
-    border-bottom: 1px solid $offwhite;
+    border-style: solid;
+    border-color: $eggplant $eggplant $offwhite $eggplant;
+    border-width: 1px;
 }
 
 .nav-tabs .nav-link:hover,
 .nav-tabs .nav-link:focus {
-    border-color: $offwhite;
+    background-color: $eggplant;
+    border-color: $eggplant;
     color: $offwhite;
 }
 
 
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
-  color: $eggplant;
-  background-color: #E1EFF6;
-  border-bottom: 1px solid $offwhite;
+    background-color: $eggplant;
+    border-color: $eggplant;
+    color: $offwhite;
 }
 
 .list-group a:hover {
@@ -88,6 +95,12 @@ h2 {
 
 .btn-reset {
     margin-left: 1.1em;
+}
+
+.message-block {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .footer {
