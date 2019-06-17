@@ -7,9 +7,14 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+body {
+    background-color: $offwhite;
+    color: $eggplant;
+}
+
 header {
     background: $light-blue;
-    pading-bottom: 2em;
+    margin-bottom: 2em;
 }
 
 .logo-block {
@@ -20,14 +25,36 @@ header {
 }
 
 .logo-block > i {
-    font-size: 2.25em;
+    font-size: 2.75em;
 }
 
 .logo-block > h1 {
     display: inline-block;
-    font-size: 2.5em;
+    font-size: 3.5em;
 }
 
 .nav {
     margin-left: 2em;
+}
+
+.nav-tabs {
+    border-bottom: 1px solid $pale-cyan;
+}
+
+.nav-tabs .nav-link.active {
+    border-bottom: 1px solid $offwhite;
+}
+
+.nav-tabs .nav-link:hover,
+.nav-tabs .nav-link:focus {
+    border-color: $offwhite;
+    color: $offwhite;
+}
+
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  color: $eggplant;
+  background-color: #E1EFF6;
+  border-bottom: 1px solid $offwhite;
 }

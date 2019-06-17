@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Container, Form, InputGroup } from 'react-bootstrap';
+
+import Header from './default/Header';
 
 class CreateTicket extends Component {
     constructor(props) {
@@ -66,51 +69,54 @@ class CreateTicket extends Component {
 
     render() {
         return (
-            <div>
-                <h2>Create Ticket - {this.state.department.name}</h2>
-                <form onSubmit={this.handleSubmit}>
-                    <input required
-                            type="text"
-                            value={this.state.name}
-                            placeholder="Name"
-                            id="name"
-                            onChange={this.handleChanges}
-                    />
-                    <input required
-                            type="email"
-                            value={this.state.email}
-                            placeholder="Email"
-                            id="email"
-                            onChange={this.handleChanges}
-                    />
-                    <input required
-                            type="text"
-                            value={this.state.subject}
-                            placeholder="Subject"
-                            id="subject"
-                            onChange={this.handleChanges}
-                    />
-                    <textarea
-                            required
-                            value={this.state.message}
-                            placeholder="Message"
-                            id="message"
-                            onChange={this.handleChanges}
-                    ></textarea>
-                    <select
-                            required
-                            value={this.state.priority}
-                            id="priority"
-                            onChange={this.handleChanges}
-                    >
-                        <option value="1">Normal</option>
-                        <option value="2">High</option>
-                        <option value="3">Urgent</option>
-                    </select>
+            <React.Fragment>
+                <Header tab="newticket" />
+                <Container>
+                    <h2>Create Ticket - {this.state.department.name}</h2>
+                    <form onSubmit={this.handleSubmit}>
+                        <input required
+                                type="text"
+                                value={this.state.name}
+                                placeholder="Name"
+                                id="name"
+                                onChange={this.handleChanges}
+                        />
+                        <input required
+                                type="email"
+                                value={this.state.email}
+                                placeholder="Email"
+                                id="email"
+                                onChange={this.handleChanges}
+                        />
+                        <input required
+                                type="text"
+                                value={this.state.subject}
+                                placeholder="Subject"
+                                id="subject"
+                                onChange={this.handleChanges}
+                        />
+                        <textarea
+                                required
+                                value={this.state.message}
+                                placeholder="Message"
+                                id="message"
+                                onChange={this.handleChanges}
+                        ></textarea>
+                        <select
+                                required
+                                value={this.state.priority}
+                                id="priority"
+                                onChange={this.handleChanges}
+                        >
+                            <option value="1">Normal</option>
+                            <option value="2">High</option>
+                            <option value="3">Urgent</option>
+                        </select>
 
-                    <button>Create Ticket</button>
-                </form>
-            </div>
+                        <button>Create Ticket</button>
+                    </form>
+                </Container>
+            </React.Fragment>
         );
     }
 }
