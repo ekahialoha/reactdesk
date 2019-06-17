@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { Container, Form, Button, Col, Row } from 'react-bootstrap';
 
 import Header from './Header';
@@ -11,13 +11,18 @@ class ManageTicket extends Component {
 
         this.state = {
             track_id: '',
-            email: '',
+            // email: '',
+            redirect: false
         };
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
+        this.setState({
+            redirect: true
+        });
         console.log(this.state.track_id, this.state.email);
+
     }
 
     handleChanges = (e) => {
@@ -27,6 +32,11 @@ class ManageTicket extends Component {
     }
 
     render() {
+        if (this.state.redirect) {
+            const redirectTo = `/ticket/view/${encodeURI(this.state.track_id)}`
+            return <Redirect to={redirectTo} />;
+        }
+
         return (
             <React.Fragment>
                 <Header tab="manageticket" />
@@ -47,7 +57,7 @@ class ManageTicket extends Component {
                                         />
                                     </Col>
                                 </Form.Group>
-                                <Form.Group as={Row}>
+                                {/*}<Form.Group as={Row}>
                                     <Form.Label column sm="3" htmlFor="email">Email</Form.Label>
                                     <Col sm="9">
                                         <Form.Control
@@ -58,7 +68,7 @@ class ManageTicket extends Component {
                                             onChange={this.handleChanges}
                                         />
                                     </Col>
-                                </Form.Group>
+                                </Form.Group>*/}
                                 <Form.Group as={Row}>
                                     <Col sm={{ offset: 3 }}>
                                         <Button variant="primary" type="submit">Submit</Button>
