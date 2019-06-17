@@ -66,3 +66,7 @@ header {
   background-color: #E1EFF6;
   border-bottom: 1px solid $offwhite;
 }
+
+.list-group a:hover {
+    text-decoration: none;
+}

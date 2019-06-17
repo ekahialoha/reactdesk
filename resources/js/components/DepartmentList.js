@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Container, ListGroup } from 'react-bootstrap';
 
 import Header from './default/Header';
 
@@ -31,22 +32,24 @@ class DepartmentList extends Component {
 
     render() {
         return (
-            <div>
-                <Header tab="newticket" />
+            <React.Fragment>
+            <Header tab="newticket" />
+            <Container>
                 <h2>Select Department</h2>
-                <ul>
+                <ListGroup>
                     {this.state.departments.map(department => {
+                        const link = `/ticket/new/${department.id}`;
                         return (
-                            <li key={department.id}>
-                                <Link to={{
-                                        pathname: `/ticket/new/${department.id}`
-                                    }}>{department.name}
-                                </Link>
-                            </li>
+                            <Link to={{
+                                pathname: `/ticket/new/${department.id}`
+                            }}>
+                                <ListGroup.Item action as="div">{department.name}</ListGroup.Item>
+                            </Link>
                         );
                     })}
-                </ul>
-            </div>
+                </ListGroup>
+            </Container>
+            </React.Fragment>
         );
     }
 }
