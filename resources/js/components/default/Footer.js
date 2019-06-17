@@ -8,7 +8,7 @@ class Footer extends Component {
 
     render() {
         return (
-            <footer className="footer">
+            <footer className="footer fixed-bottom">
             Copyright 2019 ReactDesk / <a href="https://www.chriskelsom.com" target="_blank">Christian Kelsom-Martin</a>
                 <div>
                     <a href="https://www.linkedin.com/in/ckelsom-martin/" target="_blank"><i className="fab fa-linkedin"></i></a>
