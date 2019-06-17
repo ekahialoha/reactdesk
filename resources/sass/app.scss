@@ -70,3 +70,29 @@ header {
 .list-group a:hover {
     text-decoration: none;
 }
+
+.footer {
+    background-color: $eggplant;
+    border-top: 1px solid $light-blue;
+    color: $offwhite !important;
+    font-size: .9em;
+    padding: .8em 0 .1em 0;
+    text-align: center;
+}
+
+.footer a {
+    color: $offwhite;
+}
+
+.footer a:hover {
+    text-decoration: none;
+}
+
+.footer i {
+    font-size: 1.7em;
+    margin-right: .3em;
+}
+
+.footer > div a:hover {
+    color: $light-blue;
+}

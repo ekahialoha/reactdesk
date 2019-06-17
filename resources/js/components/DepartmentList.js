@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Container, ListGroup } from 'react-bootstrap';
 
 import Header from './default/Header';
+import Footer from './default/Footer';
 
 class DepartmentList extends Component {
     constructor(props) {
@@ -49,6 +50,7 @@ class DepartmentList extends Component {
                     })}
                 </ListGroup>
             </Container>
+            <Footer />
             </React.Fragment>
         );
     }

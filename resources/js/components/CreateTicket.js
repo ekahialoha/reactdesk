@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Container, Form, InputGroup } from 'react-bootstrap';
 
 import Header from './default/Header';
+import Footer from './default/Footer';
 
 class CreateTicket extends Component {
     constructor(props) {
@@ -115,6 +116,7 @@ class CreateTicket extends Component {
                         <button>Create Ticket</button>
                     </form>
                 </Container>
+                <Footer />
             </React.Fragment>
         );
     }

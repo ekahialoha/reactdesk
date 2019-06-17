@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 
 import Header from './Header';
+import Footer from './Footer';
 
 class ManageTicket extends Component {
     constructor(props) {
@@ -16,6 +17,7 @@ class ManageTicket extends Component {
                 <Container>
                     Manage Ticket
                 </Container>
+                <Footer />
             </React.Fragment>
         );
     }

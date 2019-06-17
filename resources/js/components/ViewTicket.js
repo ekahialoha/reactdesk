@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 const moment = require('moment');
 
 import Header from './default/Header';
+import Footer from './default/Footer';
 
 class CreateTicket extends Component {
     constructor(props) {
@@ -57,6 +58,7 @@ class CreateTicket extends Component {
                         </section>
                     );
                 })}
+                <Footer />
             </div>
         );
     }
