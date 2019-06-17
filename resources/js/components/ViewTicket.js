@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Container, Row, Col, Badge } from 'react-bootstrap';
 
 const moment = require('moment');
 
@@ -12,6 +13,7 @@ class CreateTicket extends Component {
 
         this.state = {
             ticket: {
+                department: {},
                 replies: []
             }
         };
@@ -36,14 +38,57 @@ class CreateTicket extends Component {
     }
 
     render() {
+        const repliesCount = this.state.ticket.replies.length;
         return (
-            <div>
+            <React.Fragment>
                 <Header tab="manageticket" />
-                <h2>ViewTicket</h2>
-                <h3>{this.state.ticket.subject} - {this.state.ticket.track_id}</h3>
+                <Container>
+                <h2>View Ticket</h2>
+                <Row>
+                    <Col>
+                        <dl className="row">
+                            <dt className="col-sm-5">Tracking ID</dt>
+                            <dd className="col-sm-7">{this.state.ticket.track_id}</dd>
+                            <dt className="col-sm-5">Subject</dt>
+                            <dd className="col-sm-7">{this.state.ticket.subject}</dd>
+                            <dt className="col-sm-5">Email</dt>
+                            <dd className="col-sm-7">{this.state.ticket.email}</dd>
+                            <dt className="col-sm-5">Department</dt>
+                            <dd className="col-sm-7">{this.state.ticket.department.name}</dd>
+                            <dt className="col-sm-5">Status</dt>
+                            <dd className="col-sm-7">{/*this.state.ticket.status*/}</dd>
+                        </dl>
+                    </Col>
+                    <Col>
+                        <dl className="row">
+                            <dt className="col-sm-5">Priority</dt>
+                            <dd className="col-sm-7">{this.state.ticket.priority}</dd>
+                            <dt className="col-sm-5">Opened On</dt>
+                            <dd className="col-sm-7">{moment(this.state.ticket.created_at).format('MM/DDYYYY, h:mm:ss a')}</dd>
+                            <dt className="col-sm-5">Opened By</dt>
+                            <dd className="col-sm-7">{this.state.ticket.name}</dd>
+                            {repliesCount > 0 ?
+                                <React.Fragment>
+                                    <dt className="col-sm-5">Last Reply By</dt>
+                                    <dd className="col-sm-7">
+                                        {this.state.ticket.replies[repliesCount - 1].user_id !== null ?
+                                            this.state.ticket.replies[repliesCount - 1].user.name :
+                                            this.state.ticket.replies[repliesCount - 1].name
+                                        }
+                                    </dd>
+                                    <dt className="col-sm-5">Last Reply On</dt>
+                                    <dd className="col-sm-7">{moment(this.state.ticket.created_at).format('MM/DDYYYY, h:mm:ss a')} </dd>
+                                </React.Fragment> :
+                                null
+                            }
+                        </dl>
+                    </Col>
+                </Row>
                 <section>
-                    <h4>{this.state.ticket.name} {this.state.ticket.email}</h4>
-                    <small>{moment(this.state.ticket.created_at).calendar()}</small>
+                    <h4>
+                        {this.state.ticket.name}
+                        <small>{moment(this.state.ticket.created_at).calendar()}</small>
+                    </h4>
                     <p>{this.state.ticket.message}</p>
                 </section>
                 {this.state.ticket.replies.map((reply) => {
@@ -51,15 +96,20 @@ class CreateTicket extends Component {
                     return (
                         <section key={reply.id}>
                             {reply.user ?
-                                <h4>{reply.user.name}<small> - Staff {reply.created_at}</small></h4> :
+                                <h4>
+                                    {reply.user.name}
+                                    <Badge variant="success">STAFF</Badge>
+                                    <small>{reply.created_at}</small>
+                                </h4> :
                                 <h4>{reply.name} <small>{reply.created_at}</small></h4>
                             }
                             <p>{reply.message}</p>
                         </section>
                     );
                 })}
+                </Container>
                 <Footer />
-            </div>
+            </React.Fragment>
         );
     }
 }
