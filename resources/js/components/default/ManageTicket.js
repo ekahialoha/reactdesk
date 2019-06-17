@@ -32,38 +32,45 @@ class ManageTicket extends Component {
                 <Header tab="manageticket" />
                 <Container>
                     <h2>Manage Existing Ticket</h2>
-                    <Form onSubmit={this.handleSubmit}>
-                        <Form.Group as={Row}>
-                            <Form.Label column sm="2" htmlFor="name">Tracking ID</Form.Label>
-                            <Col sm="10">
-                                <Form.Control
-                                    required
-                                    type="text"
-                                    placeholder="Tracking ID"
-                                    id="track_id"
-                                    onChange={this.handleChanges}
-                                />
-                            </Col>
-                        </Form.Group>
-                        <Form.Group as={Row}>
-                            <Form.Label column sm="2" htmlFor="email">Email</Form.Label>
-                            <Col sm="10">
-                                <Form.Control
-                                    required
-                                    type="email"
-                                    placeholder="Email"
-                                    id="email"
-                                    onChange={this.handleChanges}
-                                />
-                            </Col>
-                        </Form.Group>
-                        <Form.Group as={Row}>
-                            <Col sm={{ span: 10, offset: 2 }}>
-                                <Button variant="primary" type="submit">Submit</Button>
-                                <Link className="btn btn-secondary btn-reset" to="/">Reset</Link>
-                            </Col>
-                        </Form.Group>
-                    </Form>
+                    <Row>
+                        <Col sm="9">
+                            <Form onSubmit={this.handleSubmit}>
+                                <Form.Group as={Row}>
+                                    <Form.Label column sm="3" htmlFor="name">Tracking ID</Form.Label>
+                                    <Col sm="9">
+                                        <Form.Control
+                                            required
+                                            type="text"
+                                            placeholder="Tracking ID"
+                                            id="track_id"
+                                            onChange={this.handleChanges}
+                                        />
+                                    </Col>
+                                </Form.Group>
+                                <Form.Group as={Row}>
+                                    <Form.Label column sm="3" htmlFor="email">Email</Form.Label>
+                                    <Col sm="9">
+                                        <Form.Control
+                                            required
+                                            type="email"
+                                            placeholder="Email"
+                                            id="email"
+                                            onChange={this.handleChanges}
+                                        />
+                                    </Col>
+                                </Form.Group>
+                                <Form.Group as={Row}>
+                                    <Col sm={{ offset: 3 }}>
+                                        <Button variant="primary" type="submit">Submit</Button>
+                                        <Link className="btn btn-secondary btn-reset" to="/">Reset</Link>
+                                    </Col>
+                                </Form.Group>
+                            </Form>
+                        </Col>
+                        <Col sm="3">
+                            <h6>Are you a staff member? <Link to="/staff/auth">Login here</Link></h6>
+                        </Col>
+                    </Row>
                 </Container>
                 <Footer />
             </React.Fragment>
