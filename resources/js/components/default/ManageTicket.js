@@ -12,10 +12,10 @@ class ManageTicket extends Component {
     render() {
         return (
             <React.Fragment>
-            <Header tab="manageticket" />
-            <Container>
-                Manage Ticket
-            </Container>
+                <Header tab="manageticket" />
+                <Container>
+                    Manage Ticket
+                </Container>
             </React.Fragment>
         );
     }

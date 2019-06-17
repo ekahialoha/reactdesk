@@ -40,7 +40,7 @@ class DepartmentList extends Component {
                     {this.state.departments.map(department => {
                         const link = `/ticket/new/${department.id}`;
                         return (
-                            <Link to={{
+                            <Link key={department.id} to={{
                                 pathname: `/ticket/new/${department.id}`
                             }}>
                                 <ListGroup.Item action as="div">{department.name}</ListGroup.Item>
