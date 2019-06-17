@@ -75,7 +75,7 @@ class CreateTicket extends Component {
                     <h2>Create New Ticket</h2>
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Group as={Row}>
-                            <Form.Label column sm="2" for="name">Name</Form.Label>
+                            <Form.Label column sm="2" htmlFor="name">Name</Form.Label>
                             <Col sm="10">
                                 <Form.Control
                                     required
@@ -88,7 +88,7 @@ class CreateTicket extends Component {
                             </Col>
                         </Form.Group>
                         <Form.Group as={Row}>
-                            <Form.Label column sm="2" for="email">Email</Form.Label>
+                            <Form.Label column sm="2" htmlFor="email">Email</Form.Label>
                             <Col sm="10">
                                 <Form.Control
                                     required
@@ -106,12 +106,13 @@ class CreateTicket extends Component {
                                 <Form.Control
                                     plaintext
                                     readOnly
-                                    value={this.state.department.name}
+                                    defaultValue={this.state.department.name}
+                                    tabIndex="-1"
                                 />
                             </Col>
                         </Form.Group>
                         <Form.Group as={Row}>
-                            <Form.Label column sm="2" for="subject">Subject</Form.Label>
+                            <Form.Label column sm="2" htmlFor="subject">Subject</Form.Label>
                             <Col sm="10">
                             <Form.Control
                                 required
@@ -124,7 +125,7 @@ class CreateTicket extends Component {
                             </Col>
                         </Form.Group>
                         <Form.Group as={Row}>
-                            <Form.Label column sm="2" for="message">Message</Form.Label>
+                            <Form.Label column sm="2" htmlFor="message">Message</Form.Label>
                             <Col sm="10">
                             <Form.Control
                                 required
@@ -137,7 +138,7 @@ class CreateTicket extends Component {
                             </Col>
                         </Form.Group>
                         <Form.Group as={Row}>
-                            <Form.Label column sm="2" for="priority">Priority</Form.Label>
+                            <Form.Label column sm="2" htmlFor="priority">Priority</Form.Label>
                             <Col sm="10">
                                 <Form.Control
                                     required
@@ -152,7 +153,12 @@ class CreateTicket extends Component {
                                 </Form.Control>
                             </Col>
                         </Form.Group>
-                        <Button variant="primary" type="submit">Submit</Button>
+                        <Form.Group as={Row}>
+                            <Col sm={{ span: 10, offset: 2 }}>
+                                <Button variant="primary" type="submit">Submit</Button>
+                                <Link className="btn btn-secondary" to="/">Reset</Link>
+                            </Col>
+                        </Form.Group>
                     </Form>
                 </Container>
                 <Footer />
