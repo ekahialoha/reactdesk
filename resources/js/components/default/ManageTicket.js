@@ -8,6 +8,22 @@ import Footer from './Footer';
 class ManageTicket extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            track_id: '',
+            email: '',
+        };
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(this.state.track_id, this.state.email);
+    }
+
+    handleChanges = (e) => {
+        this.setState({
+            [e.target.id]: e.target.value
+        });
     }
 
     render() {
@@ -16,7 +32,7 @@ class ManageTicket extends Component {
                 <Header tab="manageticket" />
                 <Container>
                     <h2>Manage Existing Ticket</h2>
-                    <Form>
+                    <Form onSubmit={this.handleSubmit}>
                         <Form.Group as={Row}>
                             <Form.Label column sm="2" htmlFor="name">Tracking ID</Form.Label>
                             <Col sm="10">
@@ -25,6 +41,7 @@ class ManageTicket extends Component {
                                     type="text"
                                     placeholder="Tracking ID"
                                     id="track_id"
+                                    onChange={this.handleChanges}
                                 />
                             </Col>
                         </Form.Group>
@@ -36,6 +53,7 @@ class ManageTicket extends Component {
                                     type="email"
                                     placeholder="Email"
                                     id="email"
+                                    onChange={this.handleChanges}
                                 />
                             </Col>
                         </Form.Group>
