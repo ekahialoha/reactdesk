@@ -13,4 +13,4 @@
 
 Route::get('/{path?}', function() {
     return view('index');
-})->where('path', '.*');
+})->where('path', '^(?!api).*');
