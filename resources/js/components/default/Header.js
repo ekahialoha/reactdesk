@@ -59,8 +59,10 @@ class Header extends Component {
         return (
             <header>
                 <div className="logo-block">
-                    <i className="fas fa-life-ring"></i>
-                    <h1>ReactDesk</h1>
+                    <Link to="/">
+                        <i className="fas fa-life-ring"></i>
+                        <h1>ReactDesk</h1>
+                    </Link>
                 </div>
                 <nav className="nav-tabs">
                     <ul className="nav">

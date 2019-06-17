@@ -24,13 +24,21 @@ header {
     padding: 1em 2em;
 }
 
-.logo-block > i {
+.logo-block i {
     font-size: 2.75em;
 }
 
-.logo-block > h1 {
+.logo-block h1 {
     display: inline-block;
     font-size: 3.5em;
+}
+
+.logo-block a {
+    color: $offwhite;
+}
+
+.logo-block a:hover, .logo-block a:active {
+    color: $eggplant;
 }
 
 .nav {
