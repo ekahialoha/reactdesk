@@ -156,7 +156,7 @@ class CreateTicket extends Component {
                         <Form.Group as={Row}>
                             <Col sm={{ span: 10, offset: 2 }}>
                                 <Button variant="primary" type="submit">Submit</Button>
-                                <Link className="btn btn-secondary" to="/">Reset</Link>
+                                <Link className="btn btn-secondary btn-reset" to="/">Reset</Link>
                             </Col>
                         </Form.Group>
                     </Form>
