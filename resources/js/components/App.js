@@ -6,6 +6,7 @@ import DepartmentList from './DepartmentList';
 import CreateTicket from './CreateTicket';
 import ViewTicket from './ViewTicket';
 import ManageTicket from './default/ManageTicket';
+import StaffRouter from './staff/StaffRouter';
 
 class App extends Component {
     render() {
@@ -17,6 +18,7 @@ class App extends Component {
                     <Route path="/ticket/new/:id" component={CreateTicket} />
                     <Route path="/ticket/view/:track_id" component={ViewTicket} />
                     <Route path="/ticket/manage" component={ManageTicket} />
+                    <Route path="/staff" component={StaffRouter} />
                 </Switch>
             </React.Fragment>
         );
