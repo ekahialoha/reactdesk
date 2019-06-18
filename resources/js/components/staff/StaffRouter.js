@@ -14,29 +14,43 @@ class StaffRouter extends Component {
         };
     }
 
-    handleIAm = () => {
+    handleIAm = (user) => {
+        this.setState({
+            user: user
+        });
+    }
+
+    handleCheckIAm = () => {
         axios.post('/api/auth/iam')
         .then(res => {
-            console.log(res);
-            this.setState({
-                redirect: true
-            })
+            this.handleIAm(res.data);
         }).catch(err => {
             console.log(err);
         });
     }
 
     componentDidMount = () => {
-        this.handleIAm();
+        this.handleCheckIAm();
     }
 
     render() {
         return (
             <React.Fragment>
                 <Switch>
-                    <Redirect exact from="/staff" to="/staff/auth" />
-                    <Route exact path="/staff/auth" component={Login} />
-                    <Route path="/staff/dashboard" component={Dashboard} />
+                    {/*<Redirect exact from="/staff" to="/staff/auth" />*/}
+                    {typeof this.state.user.id !== 'undefined' ?
+                        <Redirect exact from="/staff/auth" to="/staff/dashboard" /> :
+                         <Route
+                             exact
+                             path="/staff/auth"
+                             component={props => {
+                                 return <Login {...props} handleIAm={this.handleIAm} />
+                             }}
+                         />
+                    }
+                    <Route path="/staff/dashboard" component={props => {
+                        return <Dashboard {...props} user={this.state.user} />;
+                    }} />
                 </Switch>
             </React.Fragment>
         );

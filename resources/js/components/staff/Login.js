@@ -19,26 +19,9 @@ class Login extends Component {
             password: this.state.password
         })
         .then(res => {
-            console.log(res);
-            this.setState({
-                departments: res.data
-            }, () => {
-                console.log(this.state.departments);
-            });
+            this.props.handleIAm(res.data);
         }).catch(err => {
             console.log('DepartmentList.fetchDepartments', err);
-        });
-    }
-
-    handleIAm = () => {
-        axios.post('/api/auth/iam')
-        .then(res => {
-            console.log(res);
-            this.setState({
-                redirect: true
-            })
-        }).catch(err => {
-            console.log(err);
         });
     }
 

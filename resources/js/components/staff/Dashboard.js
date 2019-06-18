@@ -10,7 +10,7 @@ class DepartmentList extends Component {
     render() {
         return (
             <React.Fragment>
-                Dashboard
+                Welcome, {this.props.user.name}!
             </React.Fragment>
         );
     }
