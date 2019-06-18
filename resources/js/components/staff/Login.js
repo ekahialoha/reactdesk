@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Alert, Container, Form, Row, Button } from 'react-bootstrap';
 
-class DepartmentList extends Component {
+class Login extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            redirect: false,
         };
     }
 
@@ -29,18 +30,13 @@ class DepartmentList extends Component {
         });
     }
 
-    checkToken = () => {
-        axios.post('/oauth/token', {
-            'form_params': {
-            'grant_type': 'authorization_code',
-            'client_id': 'client-id',
-            'client_secret': 'client-secret',
-            'redirect_uri': 'http://example.com/callback',
-            'code': '',
-        }
-        })
+    handleIAm = () => {
+        axios.post('/api/auth/iam')
         .then(res => {
             console.log(res);
+            this.setState({
+                redirect: true
+            })
         }).catch(err => {
             console.log(err);
         });
@@ -48,7 +44,6 @@ class DepartmentList extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state);
         this.validateAuth();
     }
 
@@ -58,11 +53,10 @@ class DepartmentList extends Component {
         });
     }
 
-    componentDidMount = () => {
-        this.checkToken();
-    }
-
     render() {
+        if (this.state.redirect) {
+            return <Redirect to="/staff/dashboard" />;
+        }
         return (
             <React.Fragment>
             <Container className="text-align-center">
@@ -107,4 +101,4 @@ class DepartmentList extends Component {
     }
 }
 
-export default DepartmentList;
+export default Login;
