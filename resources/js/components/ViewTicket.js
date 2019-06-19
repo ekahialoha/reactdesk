@@ -6,6 +6,7 @@ const moment = require('moment');
 
 import Header from './default/Header';
 import Footer from './default/Footer';
+import Error from './default/Error';
 
 class CreateTicket extends Component {
     constructor(props) {
@@ -14,7 +15,8 @@ class CreateTicket extends Component {
         this.state = {
             ticket: {
                 department: {},
-                replies: []
+                replies: [],
+                error: false,
             }
         };
     }
@@ -25,11 +27,12 @@ class CreateTicket extends Component {
             console.log(res);
             this.setState({
                 'ticket': res.data
-            }, () => {
-                console.log(this.state.ticket);
             });
         }).catch(err => {
             console.log('ViewTicket.fetchTicket', err)
+            this.setState({
+                'error': true
+            });
         });
     }
 
@@ -39,6 +42,9 @@ class CreateTicket extends Component {
 
     render() {
         const repliesCount = this.state.ticket.replies.length;
+        if (this.state.error) {
+            return <Error headerTab="manageticket"/>;
+        }
         return (
             <React.Fragment>
                 <Header tab="manageticket" />
