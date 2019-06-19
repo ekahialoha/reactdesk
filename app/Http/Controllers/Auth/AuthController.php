@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use JWTAuth;
+use stdClass;
 
 class AuthController extends Controller
 {
@@ -28,8 +29,8 @@ class AuthController extends Controller
             ];
         } else {
             $return = [
-                'status' => 403,
-                'data' => [],
+                'status' => 401,
+                'data' => new stdClass(),
                 'cookie' => [
                     'value' => '',
                     'expires' => Carbon::now()->timestamp - 3600
@@ -44,10 +45,22 @@ class AuthController extends Controller
 
     public function terminate(Request $request)
     {
+        JWTAuth::invalidate(JWTAuth::parseToken());
 
+        $data = new stdClass();
+        $data->loggedOut = true;
+
+        $return = [
+            'status' => 200,
+            'data' => $data
+        ];
+
+        return response()
+                ->json($return['data'], $return['status'])
+                ->cookie('token', '', Carbon::now()->timestamp - 3600);
     }
 
-    public function checkAuthed()
+    public function checkIAm()
     {
         if ($user = JWTAuth::parseToken()->authenticate()) {
             $return = [
@@ -55,9 +68,10 @@ class AuthController extends Controller
                 'data' => JWTAuth::user()
             ];
         } else {
+            $data = new stdClass();
             $return = [
-                'status' => 403,
-                'data' => JWTAuth::user()
+                'status' => 401,
+                'data' => $data
             ];
         }
         return response()->json($return['data'], $return['status']);

@@ -21,7 +21,7 @@ class Login extends Component {
         .then(res => {
             this.props.handleIAm(res.data);
         }).catch(err => {
-            console.log('DepartmentList.fetchDepartments', err);
+            console.log('Staff/Login.validateAuth', err);
         });
     }
 

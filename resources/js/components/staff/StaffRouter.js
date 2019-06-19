@@ -10,7 +10,7 @@ class StaffRouter extends Component {
         super(props);
 
         this.state = {
-            user: {}
+            user: {},
         };
     }
 
@@ -24,9 +24,22 @@ class StaffRouter extends Component {
         axios.post('/api/auth/iam')
         .then(res => {
             this.handleIAm(res.data);
+            console.log('Staff/StaffRouter.handleCheckIAm: IAM WHO?', res.data);
         }).catch(err => {
-            console.log(err);
+            console.log('Staff/StaffRouter.handleCheckIAm:', err);
         });
+    }
+
+    handleTerminate = () => {
+        axios.post('/api/auth/terminate')
+        .then(res => {
+            console.log(res);
+        }).catch(err => {
+            console.log('Staff/StaffRouter.handleTerminate', err);
+        });
+        return (
+            <Redirect to="/" />
+        );
     }
 
     componentDidMount = () => {
@@ -34,26 +47,39 @@ class StaffRouter extends Component {
     }
 
     render() {
-        return (
-            <React.Fragment>
-                <Switch>
-                    {/*<Redirect exact from="/staff" to="/staff/auth" />*/}
-                    {typeof this.state.user.id !== 'undefined' ?
+        if (typeof this.state.user.id !== 'undefined') {
+            return (
+                <React.Fragment>
+                    <Switch>
                         <Redirect exact from="/staff/auth" to="/staff/dashboard" /> :
-                         <Route
+                        <Route
+                            path="/staff/dashboard"
+                            component={props => {
+                                return <Dashboard {...props} user={this.state.user} />;
+                            }}
+                        />
+                        <Route path="/staff/terminate" component={this.handleTerminate} />
+                        <Route render={() => <Redirect to="/staff/dashboard" />} />
+                    </Switch>
+                </React.Fragment>
+            );
+        } else {
+            return (
+                <React.Fragment>
+                    <Switch>
+                        <Redirect exact from="/staff" to="/staff/auth" />
+                        <Route
                              exact
                              path="/staff/auth"
                              component={props => {
                                  return <Login {...props} handleIAm={this.handleIAm} />
                              }}
                          />
-                    }
-                    <Route path="/staff/dashboard" component={props => {
-                        return <Dashboard {...props} user={this.state.user} />;
-                    }} />
-                </Switch>
-            </React.Fragment>
-        );
+                        <Route render={() => <Redirect to="/staff/auth" />} />
+                    </Switch>
+                </React.Fragment>
+            );
+        }
     }
 }
 

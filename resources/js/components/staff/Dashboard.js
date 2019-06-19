@@ -11,6 +11,7 @@ class DepartmentList extends Component {
         return (
             <React.Fragment>
                 Welcome, {this.props.user.name}!
+                <Link to="/staff/terminate">Logout</Link>
             </React.Fragment>
         );
     }
