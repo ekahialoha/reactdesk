@@ -41,10 +41,11 @@ class CreateTicket extends Component {
     }
 
     render() {
-        const repliesCount = this.state.ticket.replies.length;
         if (this.state.error) {
             return <Error headerTab="manageticket"/>;
         }
+
+        const repliesCount = this.state.ticket.replies.length;
         return (
             <React.Fragment>
                 <Header tab="manageticket" />
