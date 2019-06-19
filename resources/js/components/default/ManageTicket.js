@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Container, Form, Button, Col, Row } from 'react-bootstrap';
 
 import Header from './Header';
@@ -12,17 +12,13 @@ class ManageTicket extends Component {
         this.state = {
             track_id: '',
             // email: '',
-            redirect: false
         };
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.setState({
-            redirect: true
-        });
+        this.props.history.push(`/ticket/view/${encodeURI(this.state.track_id)}`);
         console.log(this.state.track_id, this.state.email);
-
     }
 
     handleChanges = (e) => {
@@ -32,11 +28,6 @@ class ManageTicket extends Component {
     }
 
     render() {
-        if (this.state.redirect) {
-            const redirectTo = `/ticket/view/${encodeURI(this.state.track_id)}`
-            return <Redirect to={redirectTo} />;
-        }
-
         return (
             <React.Fragment>
                 <Header tab="manageticket" />
