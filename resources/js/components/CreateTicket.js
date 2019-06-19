@@ -4,6 +4,7 @@ import { Container, Form, Button, Col, Row, InputGroup } from 'react-bootstrap';
 
 import Header from './default/Header';
 import Footer from './default/Footer';
+import Error from './default/Error';
 
 class CreateTicket extends Component {
     constructor(props) {
@@ -15,7 +16,8 @@ class CreateTicket extends Component {
             email: '',
             subject: '',
             message: '',
-            priority: 0
+            priority: 0,
+            error: false,
         };
     }
 
@@ -25,11 +27,12 @@ class CreateTicket extends Component {
             console.log(res);
             this.setState({
                 'department': res.data
-            }, () => {
-                console.log(this.state.department);
             });
         }).catch(err => {
-            console.log('CreateTicket.fetchDepartment', err)
+            console.log('CreateTicket.fetchDepartment', err);
+            this.setState({
+                error: true
+            });
         });
     }
 
@@ -68,6 +71,10 @@ class CreateTicket extends Component {
     }
 
     render() {
+        if (this.state.error) {
+            return <Error headerTab="newticket" />;
+        }
+
         return (
             <React.Fragment>
                 <Header tab="newticket" />
