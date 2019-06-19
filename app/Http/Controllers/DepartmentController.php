@@ -7,15 +7,26 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Department;
 use App\Http\Resources\Department as DepartmentResource;
 use \stdClass;
+use JWTAuth;
 
 
 class DepartmentController extends Controller
 {
-    public function index()
+    public function __construct()
     {
+        $this->middleware('auth:api')->except(['index', 'show']);
+    }
+
+    public function index(Request $request)
+    {
+        if ($request->cookie('token') && JWTAuth::parseToken()->authenticate()) {
+            $departments = Department::all();
+        } else {
+            $departments = Department::where('status', 1)->get();
+        }
         $return = [
             'status' => 200,
-            'data' => DepartmentResource::collection(Department::all())
+            'data' => DepartmentResource::collection($departments)
         ];
 
         return response()->json($return['data'], $return['status']);
@@ -37,10 +48,14 @@ class DepartmentController extends Controller
         return response()->json($return['data'], $return['status']);
     }
 
-    public function show($id)
+    public function show($id, Request $request)
     {
         try {
-            $department = Department::findOrFail($id);
+            if ($request->cookie('token') && JWTAuth::parseToken()->authenticate()) {
+                $department = Department::findOrFail($id);
+            } else {
+                $department = Department::where('status', 1)->findOrFail($id);
+            }
             $return = [
                 'status' => 200,
                 'data' => new DepartmentResource($department)
