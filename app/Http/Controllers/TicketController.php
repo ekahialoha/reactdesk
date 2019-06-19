@@ -9,11 +9,14 @@ use App\Traits\CreateTrackId;
 use App\Ticket;
 use \stdClass;
 
-
-
 class TicketController extends Controller
 {
     use CreateTrackId;
+
+    public function __construct()
+    {
+        $this->middleware('auth:api')->except(['store', 'show', 'update']);
+    }
 
     public function index()
     {
@@ -49,10 +52,10 @@ class TicketController extends Controller
     }
 
 
-    public function show($id)
+    public function show(Request $request, $id)
     {
         try {
-            if (is_numeric($id)) {
+            if ($request->cookie('token') && JWTAuth::parseToken()->authenticate()) {
                 $ticket = Ticket::findOrFail($id);
             } else {
                 $ticket = Ticket::where('track_id', $id)->firstOrFail();
@@ -77,7 +80,12 @@ class TicketController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $ticket = Ticket::findOrFail($id);
+            if ($request->cookie('token') && JWTAuth::parseToken()->authenticate()) {
+                $ticket = Ticket::findOrFail($id);
+            } else {
+                $ticket = Ticket::where('track_id', $id)->firstOrFail();
+           }
+
             $ticket->department_id = $request->input('department_id');
             $ticket->name = $request->input('name');
             $ticket->email = $request->input('email');
