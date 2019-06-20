@@ -7,6 +7,7 @@ const moment = require('moment');
 import Header from './default/Header';
 import Footer from './default/Footer';
 import Error from './default/Error';
+import NewReply from './NewReply';
 
 class CreateTicket extends Component {
     constructor(props) {
@@ -119,6 +120,7 @@ class CreateTicket extends Component {
                     );
                 })}
                 </ListGroup>
+                <NewReply />
                 </Container>
                 <Footer />
             </React.Fragment>
