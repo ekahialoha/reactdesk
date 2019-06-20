@@ -46,9 +46,7 @@ class CreateTicket extends Component {
         })
         .then(res => {
             this.setState(prevState => {
-                console.log('prev', prevState['ticket']);
-                prevState['ticket'].replies.push(res.data);
-                console.log('after', prevState['ticket']);
+                prevState.ticket.replies.push(res.data);
                 return {
                     ticket: prevState.ticket
                 }
@@ -125,7 +123,7 @@ class CreateTicket extends Component {
                     </ListGroup.Item>
 
                 {this.state.ticket.replies.map((reply) => {
-                    reply.created_at = moment(reply.created_at).calendar();
+                    const createdAt = moment(reply.created_at).calendar();
                     return (
                         <ListGroup.Item key={reply.id}>
                             <div className="message-block">
@@ -136,7 +134,7 @@ class CreateTicket extends Component {
                                     </h4> :
                                     <h4>{reply.name}</h4>
                                 }
-                                <small>{reply.created_at}</small>
+                                <small>{createdAt}</small>
                             </div>
                             <p>{reply.message}</p>
                         </ListGroup.Item>
