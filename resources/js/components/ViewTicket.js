@@ -32,9 +32,32 @@ class CreateTicket extends Component {
         }).catch(err => {
             console.log('ViewTicket.fetchTicket', err)
             this.setState({
-                'error': true
+                error: true
             });
         });
+    }
+
+    handleReply = (message) => {
+        axios.post('/api/replies', {
+            ticket_id: this.state.ticket.track_id,
+            user_id: null,
+            name: this.state.ticket.name,
+            message: message
+        })
+        .then(res => {
+            this.setState(prevState => {
+                console.log('prev', prevState['ticket']);
+                prevState['ticket'].replies.push(res.data);
+                console.log('after', prevState['ticket']);
+                return {
+                    ticket: prevState.ticket
+                }
+            });
+        }).catch(err => {
+            this.setState({
+                error: true
+            });
+        })
     }
 
     componentDidMount = () => {
@@ -120,7 +143,7 @@ class CreateTicket extends Component {
                     );
                 })}
                 </ListGroup>
-                <NewReply />
+                <NewReply handleReply={this.handleReply} />
                 </Container>
                 <Footer />
             </React.Fragment>

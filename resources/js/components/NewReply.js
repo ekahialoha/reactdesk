@@ -22,10 +22,10 @@ class NewReply extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
-        console.log(this.state.message);
+        this.props.handleReply(this.state.message);
 
         this.setState({
-            name: '',
+            message: '',
             showForm: false
         });
     }
@@ -36,7 +36,7 @@ class NewReply extends Component {
                 behavior: 'smooth',
                 block: 'center',
             });
-        }, 305)
+        }, 305);
     }
 
     handleShowForm = () => {
