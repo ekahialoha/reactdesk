@@ -33,13 +33,16 @@ class StaffRouter extends Component {
     handleTerminate = () => {
         axios.post('/api/auth/terminate')
         .then(res => {
-            console.log(res);
+            this.setState({
+                user: {}
+            }, () => {
+                console.log(this.state.user);
+                this.props.history.push('/staff');
+            });
         }).catch(err => {
             console.log('Staff/StaffRouter.handleTerminate', err);
         });
-        return (
-            <Redirect to="/" />
-        );
+        return '';
     }
 
     componentDidMount = () => {

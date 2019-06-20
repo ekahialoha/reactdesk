@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { Alert, Container, Form, Row, Button } from 'react-bootstrap';
+import { Nav, Navbar } from 'react-bootstrap';
 
-class DepartmentList extends Component {
+class Dashboard extends Component {
     constructor(props) {
         super(props);
     }
@@ -10,11 +10,24 @@ class DepartmentList extends Component {
     render() {
         return (
             <React.Fragment>
-                Welcome, {this.props.user.name}!
-                <Link to="/staff/terminate">Logout</Link>
-            </React.Fragment>
+                <Navbar
+                    fixed="top"
+                    variant="dark"
+                    bg="dark"
+                >
+                    <Navbar.Brand>ReactDesk</Navbar.Brand>
+                    <Navbar.Text>
+                        Welcome,{this.props.user.name}!
+                    </Navbar.Text>
+                    <Nav>
+                        <Nav.Item>
+                            <Link to="/staff/terminate">Logout</Link>
+                        </Nav.Item>
+                    </Nav>
+                </Navbar>
+        </React.Fragment>
         );
     }
 }
 
-export default DepartmentList;
+export default Dashboard;
