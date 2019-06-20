@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button, Card } from 'react-bootstrap';
+import { Form, Button, Card, Collapse } from 'react-bootstrap';
 
 class NewReply extends Component {
     constructor(props) {
@@ -28,24 +28,46 @@ class NewReply extends Component {
         });
     }
 
+    handleShowForm = () => {
+        this.setState({
+            showForm: !this.state.showForm
+        });
+    }
+
     render() {
         return (
             <React.Fragment>
                 <Card>
-                    <Card.Header>Reply</Card.Header>
-                    <Card.Body>
-                        <Form onSubmit={this.handleSubmit}>
-                            <Form.Control
-                                required
-                                as="textarea"
-                                value={this.state.message}
-                                placeholder="Enter your response here"
-                                id="message"
-                                onChange={this.handleChanges}
-                            />
-                            <Button type="submit">Reply</Button>
-                        </Form>
-                    </Card.Body>
+                    <Card.Header onClick={this.handleShowForm}>
+                        Reply
+                        {this.state.showForm ?
+                            <i className="fas fa-caret-square-up"></i>
+                            :
+                            <i className="fas fa-caret-square-down"></i>
+                        }
+                    </Card.Header>
+                    <Collapse in={this.state.showForm}>
+                        <Card.Body>
+                            <Form onSubmit={this.handleSubmit}>
+                                <Form.Group>
+                                    <Form.Label htmlFor="message">Message</Form.Label>
+                                    <Form.Control
+                                        required
+                                        as="textarea"
+                                        value={this.state.message}
+                                        placeholder="Enter your response here"
+                                        id="message"
+                                        onChange={this.handleChanges}
+                                    />
+                                </Form.Group>
+                                <Button
+                                    type="submit"
+                                    block
+                                    size="lg"
+                                >Reply</Button>
+                            </Form>
+                        </Card.Body>
+                    </Collapse>
                 </Card>
             </React.Fragment>
         );
