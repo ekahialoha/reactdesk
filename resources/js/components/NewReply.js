@@ -9,6 +9,8 @@ class NewReply extends Component {
             message: '',
             showForm: false,
         };
+
+        this.replyFocus = React.createRef();
     }
 
     handleChanges = (e) => {
@@ -28,9 +30,22 @@ class NewReply extends Component {
         });
     }
 
+    handleScroll = () => {
+        setTimeout(() => {
+            this.replyFocus.current.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center',
+            });
+        }, 305)
+    }
+
     handleShowForm = () => {
         this.setState({
             showForm: !this.state.showForm
+        }, () => {
+            if (this.state.showForm) {
+                this.handleScroll();
+            }
         });
     }
 
@@ -64,6 +79,7 @@ class NewReply extends Component {
                                     type="submit"
                                     block
                                     size="lg"
+                                    ref={this.replyFocus}
                                 >Reply</Button>
                             </Form>
                         </Card.Body>
