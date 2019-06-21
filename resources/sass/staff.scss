@@ -1,0 +1,70 @@
+/* Staff Styling */
+.staff-logo-block {
+    color: $offwhite;
+    font-family: $logo-font-family;
+    letter-spacing: .4em;
+    padding: 1em 2em;
+    text-transform: uppercase;
+    i {
+        font-size: 2em;
+    }
+    h1 {
+        display: inline-block;
+        font-size: 2.75em;
+    }
+    a {
+        color: $eggplant;
+    }
+}
+
+.bg-dark {
+    background: $eggplant !important;
+}
+
+.staff-body {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    grid-column-gap: 1em;
+    margin: 0;
+    max-width: 100%;
+    padding: 0;
+}
+
+.staff-nav {
+    background: $light-blue;
+    border-right: 1px solid $pale-cyan;
+    ul {
+        display: block;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: .2em 0 0 0;
+        padding: 0;
+    }
+    li {
+        list-style: none;
+        width: 100%;
+    }
+    a {
+        color: $offwhite;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 1em;
+        width: 100%;
+    }
+    a:hover {
+        background: $pale-cyan;
+        color: $eggplant ;
+        text-decoration: none;
+    }
+    a > span {
+        padding-left: 1em;
+    }
+    a > i:hover {
+        color: $eggplant;
+    }
+}
+
+.staff-logo-block a:hover, .logo-block a:active {
+    color: $eggplant;
+}

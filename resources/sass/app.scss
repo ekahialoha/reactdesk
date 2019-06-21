@@ -139,31 +139,6 @@ h2 {
     font-size: 1.7em;
     margin-right: .3em;
 }
-/* Staff Styling */
-.staff-logo-block {
-    color: $offwhite;
-    font-family: $logo-font-family;
-    letter-spacing: .4em;
-    padding: 1em 2em;
-    text-transform: uppercase;
-}
-
-.staff-logo-block i {
-    font-size: 2em;
-}
-
-.staff-logo-block h1 {
-    display: inline-block;
-    font-size: 2.75em;
-}
-
-.staff-logo-block a {
-    color: $eggplant;
-}
-
-.staff-logo-block a:hover, .logo-block a:active {
-    color: $eggplant;
-}
 
 .form-signin {
   width: 100%;
@@ -171,3 +146,5 @@ h2 {
   padding: 15px;
   margin: auto;
 }
+
+@import 'staff';

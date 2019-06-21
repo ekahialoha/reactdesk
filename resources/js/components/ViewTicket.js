@@ -25,7 +25,6 @@ class CreateTicket extends Component {
     fetchTicket = () => {
         axios.get(`/api/tickets/${this.props.match.params.track_id}`)
         .then(res => {
-            console.log(res);
             this.setState({
                 'ticket': res.data
             });
@@ -68,6 +67,7 @@ class CreateTicket extends Component {
         }
 
         const repliesCount = this.state.ticket.replies.length;
+
         return (
             <React.Fragment>
                 <Header tab="manageticket" />
