@@ -11,6 +11,7 @@ class StaffRouter extends Component {
 
         this.state = {
             user: {},
+            path: this.props.location.pathname === '/staff/auth' ? '/staff/dashboard' : this.props.location.pathname,
         };
     }
 
@@ -51,10 +52,11 @@ class StaffRouter extends Component {
 
     render() {
         if (typeof this.state.user.id !== 'undefined') {
+            console.log(this.props.location);
             return (
                 <React.Fragment>
                     <Switch>
-                        <Redirect exact from="/staff/auth" to="/staff/dashboard" /> :
+                        <Redirect exact from="/staff/auth" to={this.state.path} /> :
                         <Route path="/staff/terminate" component={this.handleTerminate} />
                         <Route
                             render={props => {

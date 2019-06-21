@@ -15,7 +15,7 @@ class Dashboard extends Component {
         this.navBarOpts = {
             'tickets-open': {
                 ref: React.createRef(),
-                link: '/staff/tickets/open'
+                link: '/staff/dashboard'
             },
             'tickets-closed': {
                 ref: React.createRef(),
@@ -124,9 +124,10 @@ class Dashboard extends Component {
                         <Switch>
                             <Route path="/staff/tickets/closed" render={() => <h1>Closed</h1>} />
                             <Route path="/staff/tickets/all" render={() => <h1>All</h1>} />
+                            <Route path="/staff/tickets/:id" render={() => <h1>Ticket View</h1>} />
+                            <Route path="/staff/manage-staff" render={() => <h1>Staff</h1>} />
                             <Route path="/staff/departments" render={() => <h1>Departments</h1>} />
                             <Route path="/staff/manage-staff" render={() => <h1>Staff</h1>} />
-                            <Route /*path="/staff/tickets/open"*/ render={() => <h1>Open</h1>} />
                         </Switch>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In varius sapien nulla, at consequat massa tempor id. Nulla feugiat, ipsum vel fermentum tincidunt, purus diam posuere enim, at lobortis diam libero ut ex. Maecenas eu erat in dui pharetra mattis. Quisque dolor purus, bibendum vel elementum quis, ullamcorper sit amet nisl. Suspendisse eget dapibus lectus. In aliquam velit et orci pretium, sed posuere ex sodales. Sed dictum quam vitae neque tempor mattis. Suspendisse sit amet luctus purus.</p>
 
