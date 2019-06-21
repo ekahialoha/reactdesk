@@ -30,7 +30,7 @@ class Dashboard extends Component {
                 link: '/staff/departments'
             },
             'staff': {
-                ref: new React.createRef(),
+                ref: React.createRef(),
                 link: '/staff/manage-staff'
             },
         };
@@ -47,7 +47,7 @@ class Dashboard extends Component {
                 };
             }, () => {
                 this.navBarOpts[clickedNav].ref.current.classList.add('active');
-                this.props.history.push(this.navBarOpts[clickedNav]['link']);
+                this.props.history.push(this.navBarOpts[clickedNav].link);
             });
         }
     }
@@ -128,7 +128,31 @@ class Dashboard extends Component {
                             <Route path="/staff/manage-staff" render={() => <h1>Staff</h1>} />
                             <Route path="/staff/departments" render={() => <h1>Departments</h1>} />
                             <Route path="/staff/manage-staff" render={() => <h1>Staff</h1>} />
+                            <Route /*path="/staff/tickets/open"*/ render={() => <h1>Open</h1>} />
                         </Switch>
+                        <div>
+                            <div className="ticket-row">
+                                <span>chk</span>
+                                <span>7489-MJB-166</span>
+                                <span>subject</span>
+                                <span>Customer</span>
+                                <span>Status</span>
+                            </div>
+                            <div className="ticket-row">
+                                <span>chk</span>
+                                <span>7489-MJB-166</span>
+                                <span>subject</span>
+                                <span>Customer</span>
+                                <span>Status</span>
+                            </div>
+                            <div className="ticket-row">
+                                <span>chk</span>
+                                <span>7489-MJB-166</span>
+                                <span>subject</span>
+                                <span>Customer</span>
+                                <span>Status</span>
+                            </div>
+                        </div>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In varius sapien nulla, at consequat massa tempor id. Nulla feugiat, ipsum vel fermentum tincidunt, purus diam posuere enim, at lobortis diam libero ut ex. Maecenas eu erat in dui pharetra mattis. Quisque dolor purus, bibendum vel elementum quis, ullamcorper sit amet nisl. Suspendisse eget dapibus lectus. In aliquam velit et orci pretium, sed posuere ex sodales. Sed dictum quam vitae neque tempor mattis. Suspendisse sit amet luctus purus.</p>
 
                         <p>Nullam ac nulla nisl. Sed odio velit, sodales vitae sem et, pellentesque aliquam quam. In bibendum id nunc in semper. Donec placerat magna in porta dapibus. Duis imperdiet diam eu nulla maximus, in iaculis arcu porta. Morbi faucibus tincidunt elit, consectetur molestie sapien sodales sed. Vestibulum a ex aliquet, vulputate libero vel, commodo diam. Fusce in sodales tellus. Etiam vitae blandit ex. Suspendisse libero ex, lobortis ut suscipit sit amet, finibus a arcu. Donec id nisi varius, suscipit sapien nec, congue lorem. Pellentesque faucibus suscipit leo. Aenean sed neque eu neque ornare bibendum. Cras urna ipsum, consequat ac tortor eget, iaculis volutpat tortor.</p>
