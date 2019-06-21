@@ -57,7 +57,7 @@ class StaffRouter extends Component {
                         <Redirect exact from="/staff/auth" to="/staff/dashboard" /> :
                         <Route path="/staff/terminate" component={this.handleTerminate} />
                         <Route
-                            component={props => {
+                            render={props => {
                                 return <Dashboard {...props} user={this.state.user} />;
                             }}
                         />

@@ -47,23 +47,24 @@
         list-style: none;
         width: 100%;
     }
-    a {
+    div {
         color: $offwhite;
+        cursor: pointer;
         display: flex;
         justify-content: flex-start;
         align-items: center;
         padding: .7em;
         width: 100%;
     }
-    a:hover {
+    div:hover, .active {
         background: $offwhite;
         color: $eggplant;
         text-decoration: none;
     }
-    a > span {
+    div > span {
         padding-left: 1em;
     }
-    a > i:hover {
+    div > i:hover {
         color: $eggplant;
     }
 }

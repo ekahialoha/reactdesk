@@ -7,6 +7,49 @@ import Footer from '../default/Footer';
 class Dashboard extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            active: 'tickets-open'
+        };
+
+        this.navBarOpts = {
+            'tickets-open': {
+                ref: React.createRef(),
+                link: '/staff/tickets/open'
+            },
+            'tickets-closed': {
+                ref: React.createRef(),
+                link: '/staff/tickets/closed'
+            },
+            'tickets-all': {
+                ref: React.createRef(),
+                link: '/staff/tickets/all'
+            },
+            'departments': {
+                ref: React.createRef(),
+                link: '/staff/departments'
+            },
+            'staff': {
+                ref: new React.createRef(),
+                link: '/staff/manage-staff'
+            },
+        };
+
+    }
+
+    handleActive = (clickedNav) => {
+        if (this.state.active !== clickedNav) {
+            this.setState((prevState) => {
+                this.navBarOpts[prevState.active].ref.current.classList.remove('active');
+
+                return {
+                    active: clickedNav
+                };
+            }, () => {
+                this.navBarOpts[clickedNav].ref.current.classList.add('active');
+                this.props.history.push(this.navBarOpts[clickedNav]['link']);
+            });
+        }
     }
 
     render() {
@@ -30,34 +73,50 @@ class Dashboard extends Component {
                     <nav className="staff-nav">
                         <ul>
                             <li>
-                                <Link to="/staff/tickets/open">
+                                <div
+                                    ref={this.navBarOpts['tickets-open'].ref}
+                                    onClick={()=> this.handleActive('tickets-open')}
+                                    className="active"
+                                >
                                     <i className="fas fa-envelope-open-text"></i>
                                     <span>Open Tickets</span>
-                                </Link>
+                                </div>
                             </li>
                             <li>
-                                <Link to="/staff/tickets/closed">
+                                <div
+                                    ref={this.navBarOpts['tickets-closed'].ref}
+                                    onClick={() => this.handleActive('tickets-closed')}
+                                >
                                     <i className="fas fa-envelope"></i>
                                     <span>Closed tickets</span>
-                                </Link>
+                                </div>
                             </li>
                             <li>
-                                <Link to="/staff/tickets/all">
+                                <div
+                                    ref={this.navBarOpts['tickets-all'].ref}
+                                    onClick={() => this.handleActive('tickets-all')}
+                                >
                                     <i className="fas fa-inbox"></i>
                                     <span>All Tickets</span>
-                                </Link>
+                                </div>
                             </li>
                             <li>
-                                <Link to="/staff/departments">
+                                <div
+                                    ref={this.navBarOpts['departments'].ref}
+                                    onClick={() => this.handleActive('departments')}
+                                >
                                     <i className="fas fa-warehouse"></i>
                                     <span>Departments</span>
-                                </Link>
+                                </div>
                             </li>
                             <li>
-                                <Link to="/staff/manage-staff">
+                                <div
+                                    ref={this.navBarOpts['staff'].ref}
+                                    onClick={() => this.handleActive('staff')}
+                                >
                                     <i className="fas fa-users"></i>
                                     <span>Staff</span>
-                                </Link>
+                                </div>
                             </li>
                         </ul>
                     </nav>
