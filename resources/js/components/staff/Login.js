@@ -9,7 +9,6 @@ class Login extends Component {
         this.state = {
             email: '',
             password: '',
-            redirect: false,
         };
     }
 
@@ -37,9 +36,6 @@ class Login extends Component {
     }
 
     render() {
-        if (this.state.redirect) {
-            return <Redirect to="/staff/dashboard" />;
-        }
         return (
             <React.Fragment>
             <Container className="text-align-center">

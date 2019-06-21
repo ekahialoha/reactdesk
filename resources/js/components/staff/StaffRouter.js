@@ -52,7 +52,6 @@ class StaffRouter extends Component {
 
     render() {
         if (typeof this.state.user.id !== 'undefined') {
-            console.log(this.props.location);
             return (
                 <React.Fragment>
                     <Switch>
