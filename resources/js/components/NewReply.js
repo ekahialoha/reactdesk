@@ -53,7 +53,7 @@ class NewReply extends Component {
         return (
             <React.Fragment>
                 <Card>
-                    <Card.Header onClick={this.handleShowForm}>
+                    <Card.Header onClick={this.handleShowForm} className="reply-header">
                         Reply
                         {this.state.showForm ?
                             <i className="fas fa-caret-square-up"></i>

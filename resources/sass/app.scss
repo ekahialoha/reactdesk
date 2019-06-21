@@ -103,6 +103,20 @@ h2 {
     width: 100%;
 }
 
+.message-block .badge {
+    margin-left: .5em;
+}
+
+.reply-header {
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.reply-header > i {
+    font-size: .8em;
+    margin-left: .5em;
+}
+
 .footer {
     background-color: $eggplant;
     border-top: 1px solid $light-blue;
