@@ -23,11 +23,14 @@
 
 .staff-body {
     display: grid;
-    grid-template-columns: 180px 1fr;
+    grid-template-columns: 155px 1fr;
     grid-column-gap: 1em;
     margin: 0;
     max-width: 100%;
     padding: 0;
+    main {
+        padding-right: 1em;
+    }
 }
 
 .staff-nav {
@@ -37,7 +40,7 @@
         display: block;
         flex-direction: row;
         flex-wrap: wrap;
-        margin: .2em 0 0 0;
+        margin: 0;
         padding: 0;
     }
     li {
@@ -49,12 +52,12 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        padding: 1em;
+        padding: .7em;
         width: 100%;
     }
     a:hover {
-        background: $pale-cyan;
-        color: $eggplant ;
+        background: $offwhite;
+        color: $eggplant;
         text-decoration: none;
     }
     a > span {

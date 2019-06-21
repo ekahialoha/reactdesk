@@ -55,14 +55,12 @@ class StaffRouter extends Component {
                 <React.Fragment>
                     <Switch>
                         <Redirect exact from="/staff/auth" to="/staff/dashboard" /> :
+                        <Route path="/staff/terminate" component={this.handleTerminate} />
                         <Route
-                            path="/staff/dashboard"
                             component={props => {
                                 return <Dashboard {...props} user={this.state.user} />;
                             }}
                         />
-                        <Route path="/staff/terminate" component={this.handleTerminate} />
-                        <Route render={() => <Redirect to="/staff/dashboard" />} />
                     </Switch>
                 </React.Fragment>
             );
