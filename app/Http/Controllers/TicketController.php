@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Http\Resources\Ticket as TicketResource;
 use App\Traits\CreateTrackId;
 use App\Ticket;
+use JWTAuth;
 use \stdClass;
 
 class TicketController extends Controller

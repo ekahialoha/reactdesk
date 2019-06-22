@@ -9,7 +9,7 @@ import Footer from './default/Footer';
 import Error from './default/Error';
 import NewReply from './NewReply';
 
-class CreateTicket extends Component {
+class ViewTicket extends Component {
     constructor(props) {
         super(props);
 
@@ -187,4 +187,4 @@ class CreateTicket extends Component {
     }
 }
 
-export default CreateTicket;
+export default ViewTicket;
