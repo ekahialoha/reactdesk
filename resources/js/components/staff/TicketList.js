@@ -3,6 +3,26 @@ import React, { Component } from 'react';
 class TicketList extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            tickets: [],
+        };
+    }
+
+    fetchTickets = () => {
+        axios.get('/api/tickets')
+        .then((res) => {
+            console.log(res);
+            this.setState({
+                tickets: res.data
+            });
+        }).catch((err) => {
+            console.log('Staff/Dashboard.fetchTickets', err);
+        })
+    }
+
+    componentDidMount = () => {
+        this.fetchTickets();
     }
 
     render() {
@@ -17,7 +37,7 @@ class TicketList extends Component {
                     <span className="ticket-name">Customer</span>
                     <span className="ticket-status">Status</span>
                 </div>
-                {this.props.tickets.map((ticket, index) => {
+                {this.state.tickets.map((ticket, index) => {
                     return (
                         <div
                             className="ticket-row"
