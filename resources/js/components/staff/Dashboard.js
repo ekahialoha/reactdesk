@@ -59,11 +59,11 @@ class Dashboard extends Component {
     }
 
     ticketsClosed = (props) => {
-        return <TicketList header="Closed" status="4" {...props} />;
+        return <TicketList header="Closed" status="closed" {...props} />;
     }
 
     ticketsOpen = (props) => {
-        return <TicketList header="Open" status="2" {...props} />;
+        return <TicketList header="Open" status="open" {...props} />;
     }
 
     ticketsAll = (props) => {

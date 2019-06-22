@@ -21,10 +21,24 @@ class TicketController extends Controller
 
     public function index(Request $request)
     {
-        if ($request->input('status') === null) {
+        if ($request->input('status') === null || $request->input('status') === 'all') {
             $tickets = Ticket::all();
         } else {
-            $tickets = Ticket::where('status', $request->input('status'))->get();
+            switch($request->input('status')) {
+                case 'closed':
+                    $status = [4];
+                    break;
+
+                case 'hold':
+                    $status = [3];
+                    break;
+
+                case 'open':
+                default:
+                    $status = [2, 1];
+            }
+
+            $tickets = Ticket::whereIn('status', $status)->get();
         }
 
         $tickets->loadMissing(['department', 'replies']);
@@ -47,7 +61,7 @@ class TicketController extends Controller
         $ticket->subject = $request->input('subject');
         $ticket->message = $request->input('message');
         $ticket->priority = $request->input('priority');
-        $ticket->status = $request->input('status');
+        $ticket->status = 1;
         $ticket->save();
 
         $return = [

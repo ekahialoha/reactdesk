@@ -30,6 +30,10 @@
     padding: 0;
     main {
         padding: 0 1em 1.5em 0;
+        h1 > i {
+            font-size: .35em;
+            padding-left: .4em;
+        }
     }
 }
 

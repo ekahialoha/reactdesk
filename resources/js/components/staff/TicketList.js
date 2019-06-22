@@ -14,8 +14,9 @@ class TicketList extends Component {
     fetchTickets = () => {
         let fetchUrl = '/api/tickets';
         if ('status' in this.props) {
-            fetchUrl += `?status=${parseInt(this.props.status)}`
+            fetchUrl += `?status=${this.props.status}`
         }
+        console.log(fetchUrl);
         axios.get(fetchUrl)
         .then((res) => {
             console.log(res);
@@ -34,7 +35,13 @@ class TicketList extends Component {
     render() {
         return (
             <React.Fragment>
-            <h1>{this.props.header}</h1>
+            <h1>
+                {this.props.header}
+                <i
+                    className="fas fa-sync"
+                    onClick={this.fetchTickets}
+                ></i>
+            </h1>
             <div>
                 <div className="ticket-row ticket-row-heading">
                     <span className="ticket-check"></span>
