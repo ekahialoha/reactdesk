@@ -58,6 +58,18 @@ class Dashboard extends Component {
         return <ManageTicket user={this.props.user} {...props} />;
     }
 
+    ticketsClosed = (props) => {
+        return <TicketList header="Closed" status="4" {...props} />;
+    }
+
+    ticketsOpen = (props) => {
+        return <TicketList header="Open" status="2" {...props} />;
+    }
+
+    ticketsAll = (props) => {
+        return <TicketList header="All" {...props} />;
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -128,13 +140,13 @@ class Dashboard extends Component {
                     </nav>
                     <main>
                         <Switch>
-                            <Route path="/staff/tickets/closed" render={(props) => <TicketList header="Closed" status="4" {...props} />} />
-                            <Route path="/staff/tickets/all" render={(props) => <TicketList header="All" {...props} />} />
+                            <Route path="/staff/tickets/closed" component={this.ticketsClosed} />
+                            <Route path="/staff/tickets/all" component={this.ticketsAll} />
                             <Route path="/staff/tickets/:id" component={this.manageTicket} />
                             <Route path="/staff/manage-staff" render={() => <h1>Staff</h1>} />
                             <Route path="/staff/departments" component={Departments} />
                             <Route path="/staff/manage-staff" render={() => <h1>Staff</h1>} />
-                            <Route /*path="/staff/tickets/open"*/ render={(props) => <TicketList header="Open" status="2" {...props} />} />
+                            <Route /*path="/staff/tickets/open"*/ component={this.ticketsOpen} />
                         </Switch>
                     </main>
                 </Container>

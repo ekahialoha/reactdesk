@@ -7,6 +7,8 @@ class TicketList extends Component {
         this.state = {
             tickets: [],
         };
+
+        console.log(this.props);
     }
 
     fetchTickets = () => {
@@ -17,7 +19,7 @@ class TicketList extends Component {
                 tickets: res.data
             });
         }).catch((err) => {
-            console.log('Staff/Dashboard.fetchTickets', err);
+            console.log('Staff/TicketList.fetchTickets', err);
         })
     }
 
