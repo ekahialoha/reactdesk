@@ -19,9 +19,14 @@ class TicketController extends Controller
         $this->middleware('auth:api')->except(['store', 'show', 'update']);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $tickets = Ticket::all();
+        if ($request->input('status') === null) {
+            $tickets = Ticket::all();
+        } else {
+            $tickets = Ticket::where('status', $request->input('status'))->get();
+        }
+
         $tickets->loadMissing(['department', 'replies']);
 
         $return = [
