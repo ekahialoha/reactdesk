@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { ListGroup, Collapse, Card, Form, Button, Row, Col } from 'react-bootstrap';
 
+import { handleScroll } from '../Helpers';
+
 class Departments extends Component {
     constructor(props) {
         super(props);
@@ -12,6 +14,8 @@ class Departments extends Component {
             newDescription: '',
             newStatus: 1,
         };
+
+        this.newFocus = React.createRef();
     }
 
     fetchDepartments = () => {
@@ -33,6 +37,10 @@ class Departments extends Component {
             return {
                 showForm: prevState.newFormShow
             };
+        }, () => {
+            if (this.state.newFormShow) {
+                handleScroll(this.newFocus)
+    ;        }
         });
     }
 
@@ -117,7 +125,7 @@ class Departments extends Component {
                                     <Form.Control
                                         required
                                         as="textarea"
-                                        value={this.state.message}
+                                        value={this.state.newDescription}
                                         placeholder="Description"
                                         id="newDescription"
                                         onChange={this.handleChanges}
@@ -143,7 +151,7 @@ class Departments extends Component {
                                     type="submit"
                                     block
                                     size="lg"
-                                    ref={this.replyFocus}
+                                    ref={this.newFocus}
                                 >Reply</Button>
                             </Form>
                         </Card.Body>

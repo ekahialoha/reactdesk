@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Form, Button, Card, Collapse } from 'react-bootstrap';
 
+import { handleScroll } from './Helpers';
+
 class NewReply extends Component {
     constructor(props) {
         super(props);
@@ -30,15 +32,6 @@ class NewReply extends Component {
         });
     }
 
-    handleScroll = () => {
-        setTimeout(() => {
-            this.replyFocus.current.scrollIntoView({
-                behavior: 'smooth',
-                block: 'center',
-            });
-        }, 305);
-    }
-
     handleShowForm = () => {
         this.setState((prevState) => {
             prevState.showForm = !prevState.showForm;
@@ -48,7 +41,7 @@ class NewReply extends Component {
             };
         }, () => {
             if (this.state.showForm) {
-                this.handleScroll();
+                handleScroll(this.replyFocus);
             }
         });
     }
