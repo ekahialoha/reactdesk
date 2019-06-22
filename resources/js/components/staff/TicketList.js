@@ -8,11 +8,15 @@ class TicketList extends Component {
             tickets: [],
         };
 
-        console.log(this.props);
+        console.log('status' in this.props ? this.props.status : null);
     }
 
     fetchTickets = () => {
-        axios.get('/api/tickets')
+        let fetchUrl = '/api/tickets';
+        if ('status' in this.props) {
+            fetchUrl += `?status=${parseInt(this.props.status)}`
+        }
+        axios.get(fetchUrl)
         .then((res) => {
             console.log(res);
             this.setState({
@@ -37,6 +41,7 @@ class TicketList extends Component {
                     <span className="ticket-id">Ticket ID</span>
                     <span className="ticket-subject">Subject</span>
                     <span className="ticket-name">Customer</span>
+                    <span className="ticket-department">Department</span>
                     <span className="ticket-status">Status</span>
                 </div>
                 {this.state.tickets.map((ticket, index) => {
@@ -53,6 +58,7 @@ class TicketList extends Component {
                             <span className="ticket-id">{ticket.track_id}</span>
                             <span className="ticket-subject">{ticket.subject}</span>
                             <span className="ticket-name">{ticket.name}</span>
+                            <span className="ticket-department">{ticket.department.name}</span>
                             <span className="ticket-status">{ticketStatus[ticket.status]}</span>
                         </div>
                     );
