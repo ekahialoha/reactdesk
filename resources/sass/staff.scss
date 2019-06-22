@@ -23,7 +23,6 @@
 
 .staff-body {
     display: grid;
-    // grid-template-columns: 155px 1fr;
     grid-template-columns: 37px 1fr;
     grid-column-gap: 1em;
     margin: 0;
@@ -94,6 +93,15 @@ div.ticket-row + div.ticket-row {
 }
 .ticket-row:last-of-type {
     border-bottom: 1px solid $eggplant;
+}
+.ticket-row-heading {
+    span {
+        font-size: 1em;
+        font-weight: bold;
+    }
+}
+.ticket-row-heading:hover {
+    background: $offwhite;
 }
 
 .staff-logo-block a:hover, .logo-block a:active {
