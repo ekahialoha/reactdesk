@@ -85,7 +85,7 @@ class CreateTicket extends Component {
                             <dt className="col-sm-5">Department</dt>
                             <dd className="col-sm-7">{this.state.ticket.department.name}</dd>
                             <dt className="col-sm-5">Status</dt>
-                            <dd className="col-sm-7">{/*this.state.ticket.status*/}</dd>
+                            <dd className="col-sm-7">{ticketStatus[this.state.ticket.status]}</dd>
                         </dl>
                     </Col>
                     <Col>

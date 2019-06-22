@@ -24,6 +24,7 @@ class Ticket extends JsonResource
             'email' => $this->email,
             'subject' => $this->subject,
             'message' => $this->message,
+            'status' => $this->status,
             'priority' => $this->priority,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
