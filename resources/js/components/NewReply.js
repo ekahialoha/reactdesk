@@ -41,10 +41,10 @@ class NewReply extends Component {
 
     handleShowForm = () => {
         this.setState((prevState) => {
-            preState.showForm = !preState.showForm;
+            prevState.showForm = !prevState.showForm;
 
             return {
-                showForm: preState.showForm
+                showForm: prevState.showForm
             };
         }, () => {
             if (this.state.showForm) {
