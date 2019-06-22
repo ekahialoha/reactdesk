@@ -12,12 +12,6 @@ class Departments extends Component {
             departments: [],
             newFormShow: false,
             editFormShow: null,
-            newName: '',
-            newDescription: '',
-            newStatus: 1,
-            editName: '',
-            editDescription: '',
-            editStatus: 1,
         };
 
         this.newFocus = React.createRef();
@@ -59,10 +53,6 @@ class Departments extends Component {
                 prevState.departments.push(res.data);
 
                 return {
-                    departments: prevState.departments,
-                    newName: '',
-                    newDescription: '',
-                    newStatus: 1,
                     newFormShow: false,
                 };
             })
@@ -71,21 +61,34 @@ class Departments extends Component {
         });
     }
 
-    handleChanges = (e) => {
+    handleEditFormShow = (e) => {
+        let departmentId = parseInt(e.target.attributes.index.value);
+        if (this.state.editFormShow === departmentId) {
+            departmentId = null;
+        }
         this.setState({
-            [e.target.id]: e.target.value
+            editFormShow: departmentId,
         });
     }
 
-    handleEditForm = (e) => {
-        const departmentId = parseInt(e.target.attributes.index.value);
-        this.setState({
-            editName: this.state.departments[departmentId].name,
-            editDescription: this.state.departments[departmentId].description,
-            editStatus: this.state.departments[departmentId].status,
-            editFormShow: departmentId,
-        }, () => {
-            console.log(this.state);
+    handleEditSubmit = (name, description, status, index, id) => {
+        axios.put(`/api/departments/${id}`, {
+            name: name,
+            description: description,
+            status: status,
+        }).then((res) => {
+            this.setState((prevState) => {
+                prevState.departments[index] = res.data;
+
+                return {
+                    departments: prevState.departments,
+                    editFormShow: null,
+                };
+            }, () => {
+                console.log(this.state.departments);
+            });
+        }).catch((err) => {
+            console.log('Staff/Departments.handleEditSubmit', err);
         });
     }
 
@@ -99,17 +102,26 @@ class Departments extends Component {
                 <h1>Departments</h1>
                 <ListGroup>
                     {this.state.departments.map((department, index) => {
-                        console.log(this.state.editFormShow);
                         return (
                             <ListGroup.Item key={department.id}>
                             {this.state.editFormShow === index ?
-                                '' :
+                                <React.Fragment>
+                                    <DepartmentsForm
+                                        index={index}
+                                        handleSubmit={this.handleEditSubmit}
+                                        handleClose={this.handleEditFormShow}
+                                        focus={this.newFocus}
+                                        department={department}
+                                        button="Update"
+                                    />
+                                </React.Fragment> :
                                 <React.Fragment>
                                  {department.name}
+                                 <small className="description">{department.description}</small>
                                  <span>
                                      <i
                                          className="fas fa-edit"
-                                         onClick={this.handleEditForm}
+                                         onClick={this.handleEditFormShow}
                                          index={index}
                                      ></i>
                                      <i className="fas fa-trash-alt"></i>
@@ -131,7 +143,11 @@ class Departments extends Component {
                     </Card.Header>
                     <Collapse in={this.state.newFormShow}>
                         <Card.Body>
-                            <DepartmentsForm handleSubmit={this.handleNewSubmit} focus={this.newFocus} />
+                            <DepartmentsForm
+                                handleSubmit={this.handleNewSubmit}
+                                focus={this.newFocus}
+                                button="Create"
+                            />
                         </Card.Body>
                     </Collapse>
                 </Card>

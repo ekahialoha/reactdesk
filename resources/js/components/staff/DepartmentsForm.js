@@ -5,19 +5,28 @@ class DepartmentsForm extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            name: '',
-            description: '',
-            status: 1,
-        };
+        this.index = 'index' in this.props ? this.props.index : null;
+        console.log(this.index);
 
+        this.state = {
+            name: 'department' in this.props ? this.props.department.name : '',
+            description: 'department' in this.props ? this.props.department.description : '',
+            status: 'department' in this.props ? this.props.department.status : 1,
+        };
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.handleSubmit(this.state.name, this.state.description, this.state.status);
-        this.setState({
+        if ('department' in this.props) {
+            this.props.handleSubmit(this.state.name, this.state.description, this.state.status, this.props.index, this.props.department.id);
+        } else {
+            this.props.handleSubmit(this.state.name, this.state.description, this.state.status);
+        }
 
+        this.setState({
+            name: '',
+            description: '',
+            status: 1,
         });
     }
 
@@ -32,7 +41,7 @@ class DepartmentsForm extends Component {
             <Form onSubmit={this.handleSubmit}>
                 <Form.Group as={Row}>
                     <Form.Label column sm="3" htmlFor="subject">Name</Form.Label>
-                    <Col sm="9">
+                    <Col sm={this.index === null ? "9" : "8"}>
                     <Form.Control
                         required
                         type="text"
@@ -42,6 +51,16 @@ class DepartmentsForm extends Component {
                         onChange={this.handleChanges}
                     />
                     </Col>
+                    {this.index !== null ?
+                        <Col>
+                            <i
+                                className="fas fa-window-close"
+                                onClick={this.props.handleClose}
+                                index={this.props.index}
+                            ></i>
+                        </Col> :
+                        ''
+                    }
                 </Form.Group>
                 <Form.Group as={Row}>
                     <Form.Label column sm="3" htmlFor="message">Description</Form.Label>
@@ -76,7 +95,7 @@ class DepartmentsForm extends Component {
                     block
                     size="lg"
                     ref={this.props.focus}
-                >Create</Button>
+                >{this.props.button}</Button>
             </Form>
         );
     }
