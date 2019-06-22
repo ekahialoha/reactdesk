@@ -92,6 +92,26 @@ class Departments extends Component {
         });
     }
 
+    removeDepartmentFromArray = (index) => {
+        this.setState((prevState) => {
+            prevState['departments'].splice(index, 1);
+            return {
+                departments: prevState['departments']
+            };
+        });
+    }
+
+    handleDelete = (e) => {
+        e.persist();
+        axios.delete(`/api/departments/${parseInt(e.target.attributes.id.value)}`)
+        .then((res) => {
+            console.log(res);
+            this.removeDepartmentFromArray(parseInt(e.target.attributes.index.value));
+        }).catch((err) => {
+            console.log('Staff/Departments.handleDelete', err);
+        });
+    }
+
     componentDidMount = () => {
         this.fetchDepartments();
     }
@@ -119,12 +139,17 @@ class Departments extends Component {
                                  {department.name}
                                  <small className="description">{department.description}</small>
                                  <span>
-                                     <i
-                                         className="fas fa-edit"
-                                         onClick={this.handleEditFormShow}
-                                         index={index}
-                                     ></i>
-                                     <i className="fas fa-trash-alt"></i>
+                                    <i
+                                        className="fas fa-edit"
+                                        onClick={this.handleEditFormShow}
+                                        index={index}
+                                    ></i>
+                                    <i
+                                        className="fas fa-trash-alt"
+                                        onClick={this.handleDelete}
+                                        id={department.id}
+                                        index={index}
+                                    ></i>
                                  </span>
                                  </React.Fragment>
                             }
