@@ -41,6 +41,7 @@ class TicketController extends Controller
         $ticket->subject = $request->input('subject');
         $ticket->message = $request->input('message');
         $ticket->priority = $request->input('priority');
+        $ticket->status = $request->input('status');
         $ticket->save();
 
         $return = [
@@ -85,6 +86,7 @@ class TicketController extends Controller
             } else {
                 $ticket = Ticket::where('track_id', $id)->firstOrFail();
            }
+           $ticket->loadMissing(['department', 'replies']);
 
             $ticket->department_id = $request->input('department_id');
             $ticket->name = $request->input('name');
@@ -92,6 +94,7 @@ class TicketController extends Controller
             $ticket->subject = $request->input('subject');
             $ticket->message = $request->input('message');
             $ticket->priority = $request->input('priority');
+            $ticket->status = $request->input('status');
             $ticket->save();
 
             $return = [
