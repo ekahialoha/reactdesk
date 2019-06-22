@@ -9,6 +9,7 @@ class Departments extends Component {
             departments: [],
             newFormShow: false,
             newName: '',
+            newDescription: '',
             newStatus: 1,
         };
     }
@@ -37,7 +38,25 @@ class Departments extends Component {
 
     handleNewSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state.newName, this.state.newStatus);
+        axios.post('/api/departments', {
+            name: this.state.newName,
+            description: this.state.newDescription,
+            status: this.state.newStatus,
+        }).then((res) => {
+            this.setState((prevState) => {
+                prevState.departments.push(res.data);
+
+                return {
+                    departments: prevState.departments,
+                    newName: '',
+                    newDescription: '',
+                    newStatus: 1,
+                    newFormShow: false,
+                };
+            })
+        }).catch((err) => {
+            console.log('Staff/Departments.handleNewSubmit', err);
+        });
     }
 
     handleChanges = (e) => {
@@ -93,6 +112,19 @@ class Departments extends Component {
                                     </Col>
                                 </Form.Group>
                                 <Form.Group as={Row}>
+                                    <Form.Label column sm="2" htmlFor="message">Description</Form.Label>
+                                    <Col sm="10">
+                                    <Form.Control
+                                        required
+                                        as="textarea"
+                                        value={this.state.message}
+                                        placeholder="Description"
+                                        id="newDescription"
+                                        onChange={this.handleChanges}
+                                    />
+                                    </Col>
+                                </Form.Group>
+                                <Form.Group as={Row}>
                                     <Form.Label column sm="2" htmlFor="status">Status</Form.Label>
                                     <Col sm="10">
                                         <Form.Control
@@ -107,7 +139,6 @@ class Departments extends Component {
                                         </Form.Control>
                                     </Col>
                                 </Form.Group>
-
                                 <Button
                                     type="submit"
                                     block
