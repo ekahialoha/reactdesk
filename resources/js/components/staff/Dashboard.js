@@ -24,6 +24,10 @@ class Dashboard extends Component {
                 ref: React.createRef(),
                 link: '/staff/tickets/closed'
             },
+            'tickets-hold': {
+                ref: React.createRef(),
+                link: '/staff/tickets/hold'
+            },
             'tickets-all': {
                 ref: React.createRef(),
                 link: '/staff/tickets/all'
@@ -70,6 +74,10 @@ class Dashboard extends Component {
         return <TicketList header="All" {...props} />;
     }
 
+    ticketsHold = (props) => {
+        return <TicketList header="On Hold" status="hold" {...props} />;
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -106,7 +114,16 @@ class Dashboard extends Component {
                                     onClick={() => this.handleActive('tickets-closed')}
                                 >
                                     <i className="fas fa-envelope"></i>
-                                    <span>Closed tickets</span>
+                                    <span>Closed Tickets</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div
+                                    ref={this.navBarOpts['tickets-hold'].ref}
+                                    onClick={() => this.handleActive('tickets-hold')}
+                                >
+                                    <i className="fas fa-mail-bulk"></i>
+                                    <span>On Hold Tickets</span>
                                 </div>
                             </li>
                             <li>
@@ -142,6 +159,7 @@ class Dashboard extends Component {
                         <Switch>
                             <Route path="/staff/tickets/closed" component={this.ticketsClosed} />
                             <Route path="/staff/tickets/all" component={this.ticketsAll} />
+                            <Route path="/staff/tickets/hold" component={this.ticketsHold} />
                             <Route path="/staff/tickets/:id" component={this.manageTicket} />
                             <Route path="/staff/manage-staff" render={() => <h1>Staff</h1>} />
                             <Route path="/staff/departments" component={Departments} />
