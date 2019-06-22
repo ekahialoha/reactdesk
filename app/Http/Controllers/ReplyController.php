@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Http\Resources\Reply as ReplyResource;
 use App\Ticket;
 use App\Reply;
+use JWTAuth;
 use \stdClass;
 
 class ReplyController extends Controller
@@ -34,7 +35,7 @@ class ReplyController extends Controller
             $ticket_id = $request->input('ticket_id');
 
             if ($request->cookie('token') && JWTAuth::parseToken()->authenticate()) {
-                $ticket = Ticket::findOrFail($id);
+                $ticket = Ticket::findOrFail($ticket_id);
             } else {
                 $ticket = Ticket::where('track_id', $ticket_id)->firstOrFail();
                 $ticket_id = $ticket->id;
@@ -46,6 +47,8 @@ class ReplyController extends Controller
             $reply->name = $request->input('name');
             $reply->message = $request->input('message');
             $reply->save();
+
+            $reply->loadMissing('user');
 
             $return = [
                 'status' => 201,

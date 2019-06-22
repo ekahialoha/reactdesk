@@ -6,7 +6,6 @@ class DepartmentsForm extends Component {
         super(props);
 
         this.index = 'index' in this.props ? this.props.index : null;
-        console.log(this.index);
 
         this.state = {
             name: 'department' in this.props ? this.props.department.name : '',

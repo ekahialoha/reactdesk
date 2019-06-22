@@ -4,6 +4,7 @@ import { Container, Nav, Navbar } from 'react-bootstrap';
 
 import Departments from './Departments';
 import TicketList from './TicketList';
+import ManageTicket from './ManageTicket';
 import Footer from '../default/Footer';
 
 class Dashboard extends Component {
@@ -37,7 +38,6 @@ class Dashboard extends Component {
                 link: '/staff/manage-staff'
             },
         };
-
     }
 
     handleActive = (clickedNav) => {
@@ -69,6 +69,10 @@ class Dashboard extends Component {
 
     componentDidMount = () => {
         this.fetchTickets();
+    }
+
+    manageTicket = (props) => {
+        return <ManageTicket user={this.props.user} {...props} />;
     }
 
     render() {
@@ -142,8 +146,8 @@ class Dashboard extends Component {
                     <main>
                         <Switch>
                             <Route path="/staff/tickets/closed" render={(props) => <TicketList header="Closed" tickets={this.state.tickets} {...props} />} />
-                            <Route path="/staff/tickets/all" render={(props) => <TicketList header="All" tickets={this.state.tickets} {...props} />} />
-                            <Route path="/staff/tickets/:id" render={() => <h1>Ticket View</h1>} />
+                            <Route path="/staff/tickets/all" render={(props) => <TicketList header="All" tickets={this.state.tickets}{...props} />} />
+                            <Route path="/staff/tickets/:id" component={this.manageTicket} />
                             <Route path="/staff/manage-staff" render={() => <h1>Staff</h1>} />
                             <Route path="/staff/departments" component={Departments} />
                             <Route path="/staff/manage-staff" render={() => <h1>Staff</h1>} />
