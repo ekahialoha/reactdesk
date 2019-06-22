@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col, Badge, ListGroup } from 'react-bootstrap';
+import { Container, Row, Col, Badge, ListGroup, DropdownButton, Dropdown } from 'react-bootstrap';
 
 const moment = require('moment');
 
@@ -20,6 +20,7 @@ class CreateTicket extends Component {
                 error: false,
             }
         };
+        this.statuses = ticketStatus;
     }
 
     fetchTicket = () => {
@@ -54,7 +55,30 @@ class CreateTicket extends Component {
             this.setState({
                 error: true
             });
+        });
+    }
+
+    handleUpdateStatus = (e) => {
+        axios.put(`/api/tickets/${this.state.ticket.track_id}`, {
+            name: this.state.ticket.name,
+            email: this.state.ticket.email,
+            department_id: this.state.ticket.department.id,
+            subject: this.state.ticket.subject,
+            message: this.state.ticket.message,
+            priority: this.state.ticket.priority,
+            status: parseInt(e.target.id),
         })
+        .then(res => {
+            this.setState(prevState => {
+                return {
+                    ticket: res.data,
+                }
+            });
+        }).catch(err => {
+            this.setState({
+                error: true
+            });
+        });
     }
 
     componentDidMount = () => {
@@ -85,7 +109,21 @@ class CreateTicket extends Component {
                             <dt className="col-sm-5">Department</dt>
                             <dd className="col-sm-7">{this.state.ticket.department.name}</dd>
                             <dt className="col-sm-5">Status</dt>
-                            <dd className="col-sm-7">{ticketStatus[this.state.ticket.status]}</dd>
+                            <dd className="col-sm-7">
+                                <DropdownButton
+                                    title={`${ticketStatus[this.state.ticket.status]}`}
+                                    variant='secondary'
+                                    id="ticket-status"
+                                >
+                                    {ticketStatus.map((status, index) => {
+                                        if (typeof status !== 'undefined') {
+                                            return this.state.ticket.status === index ?
+                                            <Dropdown.Item active eventKey={index} key={index} id={index} onClick={this.handleUpdateStatus}>{status}</Dropdown.Item> :
+                                            <Dropdown.Item eventKey={index} key={index} id={index} onClick={this.handleUpdateStatus}>{status}</Dropdown.Item>;
+                                        }
+                                    })}
+                                </DropdownButton>
+                            </dd>
                         </dl>
                     </Col>
                     <Col>
