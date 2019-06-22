@@ -49,9 +49,9 @@ class Dashboard extends Component {
                 };
             }, () => {
                 this.navBarOpts[clickedNav].ref.current.classList.add('active');
-                this.props.history.push(this.navBarOpts[clickedNav].link);
             });
         }
+        this.props.history.push(this.navBarOpts[clickedNav].link);
     }
 
     manageTicket = (props) => {
