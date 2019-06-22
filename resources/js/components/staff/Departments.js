@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ListGroup, Collapse, Card, Form, Button, Row, Col } from 'react-bootstrap';
 
+import DepartmentsForm from './DepartmentsForm';
 import { handleScroll } from '../Helpers';
 
 class Departments extends Component {
@@ -10,9 +11,13 @@ class Departments extends Component {
         this.state = {
             departments: [],
             newFormShow: false,
+            editFormShow: null,
             newName: '',
             newDescription: '',
             newStatus: 1,
+            editName: '',
+            editDescription: '',
+            editStatus: 1,
         };
 
         this.newFocus = React.createRef();
@@ -44,12 +49,11 @@ class Departments extends Component {
         });
     }
 
-    handleNewSubmit = (e) => {
-        e.preventDefault();
+    handleNewSubmit = (name, description, status) => {
         axios.post('/api/departments', {
-            name: this.state.newName,
-            description: this.state.newDescription,
-            status: this.state.newStatus,
+            name: name,
+            description: description,
+            status: status,
         }).then((res) => {
             this.setState((prevState) => {
                 prevState.departments.push(res.data);
@@ -73,6 +77,18 @@ class Departments extends Component {
         });
     }
 
+    handleEditForm = (e) => {
+        const departmentId = parseInt(e.target.attributes.index.value);
+        this.setState({
+            editName: this.state.departments[departmentId].name,
+            editDescription: this.state.departments[departmentId].description,
+            editStatus: this.state.departments[departmentId].status,
+            editFormShow: departmentId,
+        }, () => {
+            console.log(this.state);
+        });
+    }
+
     componentDidMount = () => {
         this.fetchDepartments();
     }
@@ -82,14 +98,24 @@ class Departments extends Component {
             <React.Fragment>
                 <h1>Departments</h1>
                 <ListGroup>
-                    {this.state.departments.map((department) => {
+                    {this.state.departments.map((department, index) => {
+                        console.log(this.state.editFormShow);
                         return (
                             <ListGroup.Item key={department.id}>
-                                {department.name}
-                                <span>
-                                    <i className="fas fa-edit"></i>
-                                    <i className="fas fa-trash-alt"></i>
-                                </span>
+                            {this.state.editFormShow === index ?
+                                '' :
+                                <React.Fragment>
+                                 {department.name}
+                                 <span>
+                                     <i
+                                         className="fas fa-edit"
+                                         onClick={this.handleEditForm}
+                                         index={index}
+                                     ></i>
+                                     <i className="fas fa-trash-alt"></i>
+                                 </span>
+                                 </React.Fragment>
+                            }
                             </ListGroup.Item>
                         );
                     })}
@@ -97,7 +123,7 @@ class Departments extends Component {
                 <Card>
                     <Card.Header onClick={this.handleNewFormShow}>
                         Add New Department
-                        {this.state.showForm ?
+                        {this.state.newFormShow ?
                             <i className="fas fa-caret-square-up"></i>
                             :
                             <i className="fas fa-caret-square-down"></i>
@@ -105,55 +131,7 @@ class Departments extends Component {
                     </Card.Header>
                     <Collapse in={this.state.newFormShow}>
                         <Card.Body>
-                            <Form onSubmit={this.handleNewSubmit}>
-                                <Form.Group as={Row}>
-                                    <Form.Label column sm="2" htmlFor="subject">Name</Form.Label>
-                                    <Col sm="10">
-                                    <Form.Control
-                                        required
-                                        type="text"
-                                        value={this.state.newName}
-                                        placeholder="Name"
-                                        id="newName"
-                                        onChange={this.handleChanges}
-                                    />
-                                    </Col>
-                                </Form.Group>
-                                <Form.Group as={Row}>
-                                    <Form.Label column sm="2" htmlFor="message">Description</Form.Label>
-                                    <Col sm="10">
-                                    <Form.Control
-                                        required
-                                        as="textarea"
-                                        value={this.state.newDescription}
-                                        placeholder="Description"
-                                        id="newDescription"
-                                        onChange={this.handleChanges}
-                                    />
-                                    </Col>
-                                </Form.Group>
-                                <Form.Group as={Row}>
-                                    <Form.Label column sm="2" htmlFor="status">Status</Form.Label>
-                                    <Col sm="10">
-                                        <Form.Control
-                                            required
-                                            as="select"
-                                            value={this.state.newStatus}
-                                            id="newStatus"
-                                            onChange={this.handleChanges}
-                                        >
-                                            <option value="1">Visible</option>
-                                            <option value="2">Private</option>
-                                        </Form.Control>
-                                    </Col>
-                                </Form.Group>
-                                <Button
-                                    type="submit"
-                                    block
-                                    size="lg"
-                                    ref={this.newFocus}
-                                >Reply</Button>
-                            </Form>
+                            <DepartmentsForm handleSubmit={this.handleNewSubmit} focus={this.newFocus} />
                         </Card.Body>
                     </Collapse>
                 </Card>
