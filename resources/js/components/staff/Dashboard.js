@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link, Switch, Route } from 'react-router-dom';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 
+import Departments from './Departments';
+import TicketList from './TicketList';
 import Footer from '../default/Footer';
 
 class Dashboard extends Component {
@@ -135,44 +137,14 @@ class Dashboard extends Component {
                     </nav>
                     <main>
                         <Switch>
-                            <Route path="/staff/tickets/closed" render={() => <h1>Closed</h1>} />
-                            <Route path="/staff/tickets/all" render={() => <h1>All</h1>} />
+                            <Route path="/staff/tickets/closed" render={(props) => <TicketList header="Closed" {...props} />} />
+                            <Route path="/staff/tickets/all" render={(props) => <TicketList header="All" {...props} />} />
                             <Route path="/staff/tickets/:id" render={() => <h1>Ticket View</h1>} />
                             <Route path="/staff/manage-staff" render={() => <h1>Staff</h1>} />
-                            <Route path="/staff/departments" render={() => <h1>Departments</h1>} />
+                            <Route path="/staff/departments" component={Departments} />
                             <Route path="/staff/manage-staff" render={() => <h1>Staff</h1>} />
-                            <Route /*path="/staff/tickets/open"*/ render={() => <h1>Open</h1>} />
+                            <Route /*path="/staff/tickets/open"*/ render={(props) => <TicketList header="Open" {...props} />} />
                         </Switch>
-                        <div>
-                            <div className="ticket-row ticket-row-heading">
-                                <span className="ticket-check"></span>
-                                <span className="ticket-id">Ticket ID</span>
-                                <span className="ticket-subject">Subject</span>
-                                <span className="ticket-name">Customer</span>
-                                <span className="ticket-status">Status</span>
-                            </div>
-                            <div className="ticket-row">
-                                <span className="ticket-check"><i className="far fa-envelope"></i></span>
-                                <span className="ticket-id">7489-MJB-166</span>
-                                <span className="ticket-subject">subject</span>
-                                <span className="ticket-name">Customer</span>
-                                <span className="ticket-status">Status</span>
-                            </div>
-                            <div className="ticket-row">
-                                <span className="ticket-check"><i className="far fa-envelope"></i></span>
-                                <span className="ticket-id">7489-MJB-166</span>
-                                <span className="ticket-subject">subject</span>
-                                <span className="ticket-name">Customer</span>
-                                <span className="ticket-status">Status</span>
-                            </div>
-                            <div className="ticket-row">
-                                <span className="ticket-check"><i className="far fa-envelope"></i></span>
-                                <span className="ticket-id">7489-MJB-166</span>
-                                <span className="ticket-subject">subject</span>
-                                <span className="ticket-name">Customer</span>
-                                <span className="ticket-status">Status</span>
-                            </div>
-                        </div>
                     </main>
                 </Container>
                 <Footer unsticky />
