@@ -106,14 +106,13 @@ h2 {
     margin-left: .5em;
 }
 
-.reply-header {
+.card-header {
     font-size: 1.2em;
     text-align: center;
-}
-
-.reply-header > i {
-    font-size: .8em;
-    margin-left: .5em;
+    > i {
+        font-size: .8em;
+        margin-left: .5em;
+    }
 }
 
 .fixed-bottom-space {
