@@ -108,6 +108,15 @@ div.ticket-row + div.ticket-row {
     color: $eggplant;
 }
 
+.list-group-item {
+    span {
+        float: right;
+    }
+    span > i + i {
+        margin-left: .2em;
+    }
+}
+
 @media screen and (min-width: 768px) {
 
     .staff-body {
