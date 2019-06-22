@@ -40,8 +40,12 @@ class NewReply extends Component {
     }
 
     handleShowForm = () => {
-        this.setState({
-            showForm: !this.state.showForm
+        this.setState((prevState) => {
+            preState.showForm = !preState.showForm;
+
+            return {
+                showForm: preState.showForm
+            };
         }, () => {
             if (this.state.showForm) {
                 this.handleScroll();
