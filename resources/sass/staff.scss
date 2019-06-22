@@ -72,21 +72,40 @@
 
 .ticket-row {
     display: grid;
-    grid-column-gap: 1px;
-    grid-row-gap: 3px;
-    grid-template-columns: 37px 83px 1fr 1fr 1fr;
+    grid-column-gap: 8px;
+    grid-template-columns: 25px 90px 1fr 1fr 80px;
+    padding-left: 2px;
     > * {
-        border: 1px solid green;
-        max-height: 40px;
+        // border: 1px solid green;
     }
     span {
         font-size: .9em;
     }
+    .ticket-check {
+        font-size: 1em;
+    }
+}
+.ticket-row:hover {
+    background: white;
 }
 div.ticket-row + div.ticket-row {
-    margin-top: 3px;
+    padding-top: 3px;
+    border-top: 1px solid $eggplant;
+}
+.ticket-row:last-of-type {
+    border-bottom: 1px solid $eggplant;
 }
 
 .staff-logo-block a:hover, .logo-block a:active {
     color: $eggplant;
+}
+
+@media screen and (min-width: 768px) {
+
+    .staff-body {
+        grid-template-columns: 155px 1fr;
+        div > span {
+            display: block;
+        }
+    }
 }

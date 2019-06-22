@@ -132,25 +132,25 @@ class Dashboard extends Component {
                         </Switch>
                         <div>
                             <div className="ticket-row">
-                                <span>chk</span>
-                                <span>7489-MJB-166</span>
-                                <span>subject</span>
-                                <span>Customer</span>
-                                <span>Status</span>
+                                <span className="ticket-check"><i className="far fa-envelope"></i></span>
+                                <span className="ticket-id">7489-MJB-166</span>
+                                <span className="ticket-subject">subject</span>
+                                <span className="ticket-name">Customer</span>
+                                <span className="ticket-status">Status</span>
                             </div>
                             <div className="ticket-row">
-                                <span>chk</span>
-                                <span>7489-MJB-166</span>
-                                <span>subject</span>
-                                <span>Customer</span>
-                                <span>Status</span>
+                                <span className="ticket-check"><i className="far fa-envelope"></i></span>
+                                <span className="ticket-id">7489-MJB-166</span>
+                                <span className="ticket-subject">subject</span>
+                                <span className="ticket-name">Customer</span>
+                                <span className="ticket-status">Status</span>
                             </div>
                             <div className="ticket-row">
-                                <span>chk</span>
-                                <span>7489-MJB-166</span>
-                                <span>subject</span>
-                                <span>Customer</span>
-                                <span>Status</span>
+                                <span className="ticket-check"><i className="far fa-envelope"></i></span>
+                                <span className="ticket-id">7489-MJB-166</span>
+                                <span className="ticket-subject">subject</span>
+                                <span className="ticket-name">Customer</span>
+                                <span className="ticket-status">Status</span>
                             </div>
                         </div>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In varius sapien nulla, at consequat massa tempor id. Nulla feugiat, ipsum vel fermentum tincidunt, purus diam posuere enim, at lobortis diam libero ut ex. Maecenas eu erat in dui pharetra mattis. Quisque dolor purus, bibendum vel elementum quis, ullamcorper sit amet nisl. Suspendisse eget dapibus lectus. In aliquam velit et orci pretium, sed posuere ex sodales. Sed dictum quam vitae neque tempor mattis. Suspendisse sit amet luctus purus.</p>
@@ -164,7 +164,7 @@ class Dashboard extends Component {
                         <p>Nunc consectetur consequat hendrerit. Fusce fringilla diam massa. In euismod sollicitudin tellus, ac lobortis ex mollis vitae. Nam orci augue, posuere in leo quis, pharetra maximus mi. Duis accumsan tortor sit amet turpis feugiat sodales. Aenean id malesuada nulla. Donec lectus est, consectetur eget tempor eu, porttitor aliquam lectus. Nam faucibus felis sed erat feugiat commodo. Mauris laoreet orci sit amet sodales lobortis. Duis posuere semper placerat. Aliquam vitae posuere lorem, eu rutrum mi. Suspendisse potenti. In est nulla, ullamcorper quis leo at, pulvinar gravida ante. Maecenas finibus ullamcorper porttitor. Aliquam in velit lacinia, finibus ante ac, dictum nisl.</p>
                     </main>
                 </Container>
-                <Footer />
+                <Footer unsticky />
             </React.Fragment>
         );
     }
