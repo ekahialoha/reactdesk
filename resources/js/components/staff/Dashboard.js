@@ -13,7 +13,6 @@ class Dashboard extends Component {
 
         this.state = {
             active: 'tickets-open',
-            tickets: [],
         };
 
         this.navBarOpts = {
@@ -53,22 +52,6 @@ class Dashboard extends Component {
                 this.props.history.push(this.navBarOpts[clickedNav].link);
             });
         }
-    }
-
-    fetchTickets = () => {
-        axios.get('/api/tickets')
-        .then((res) => {
-            console.log(res);
-            this.setState({
-                tickets: res.data
-            });
-        }).catch((err) => {
-            console.log('Staff/Dashboard.fetchTickets', err);
-        })
-    }
-
-    componentDidMount = () => {
-        this.fetchTickets();
     }
 
     manageTicket = (props) => {
@@ -145,13 +128,13 @@ class Dashboard extends Component {
                     </nav>
                     <main>
                         <Switch>
-                            <Route path="/staff/tickets/closed" render={(props) => <TicketList header="Closed" tickets={this.state.tickets} {...props} />} />
-                            <Route path="/staff/tickets/all" render={(props) => <TicketList header="All" tickets={this.state.tickets}{...props} />} />
+                            <Route path="/staff/tickets/closed" render={(props) => <TicketList header="Closed" status="4" {...props} />} />
+                            <Route path="/staff/tickets/all" render={(props) => <TicketList header="All" {...props} />} />
                             <Route path="/staff/tickets/:id" component={this.manageTicket} />
                             <Route path="/staff/manage-staff" render={() => <h1>Staff</h1>} />
                             <Route path="/staff/departments" component={Departments} />
                             <Route path="/staff/manage-staff" render={() => <h1>Staff</h1>} />
-                            <Route /*path="/staff/tickets/open"*/ render={(props) => <TicketList header="Open" tickets={this.state.tickets} {...props} />} />
+                            <Route /*path="/staff/tickets/open"*/ render={(props) => <TicketList header="Open" status="2" {...props} />} />
                         </Switch>
                     </main>
                 </Container>
