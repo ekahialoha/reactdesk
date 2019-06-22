@@ -11,7 +11,8 @@ class Dashboard extends Component {
         super(props);
 
         this.state = {
-            active: 'tickets-open'
+            active: 'tickets-open',
+            tickets: [],
         };
 
         this.navBarOpts = {
@@ -58,6 +59,9 @@ class Dashboard extends Component {
         axios.get('/api/tickets')
         .then((res) => {
             console.log(res);
+            this.setState({
+                tickets: res.data
+            });
         }).catch((err) => {
             console.log('Staff/Dashboard.fetchTickets', err);
         })
@@ -137,13 +141,13 @@ class Dashboard extends Component {
                     </nav>
                     <main>
                         <Switch>
-                            <Route path="/staff/tickets/closed" render={(props) => <TicketList header="Closed" {...props} />} />
-                            <Route path="/staff/tickets/all" render={(props) => <TicketList header="All" {...props} />} />
+                            <Route path="/staff/tickets/closed" render={(props) => <TicketList header="Closed" tickets={this.state.tickets} {...props} />} />
+                            <Route path="/staff/tickets/all" render={(props) => <TicketList header="All" tickets={this.state.tickets} {...props} />} />
                             <Route path="/staff/tickets/:id" render={() => <h1>Ticket View</h1>} />
                             <Route path="/staff/manage-staff" render={() => <h1>Staff</h1>} />
                             <Route path="/staff/departments" component={Departments} />
                             <Route path="/staff/manage-staff" render={() => <h1>Staff</h1>} />
-                            <Route /*path="/staff/tickets/open"*/ render={(props) => <TicketList header="Open" {...props} />} />
+                            <Route /*path="/staff/tickets/open"*/ render={(props) => <TicketList header="Open" tickets={this.state.tickets} {...props} />} />
                         </Switch>
                     </main>
                 </Container>

@@ -17,27 +17,24 @@ class TicketList extends Component {
                     <span className="ticket-name">Customer</span>
                     <span className="ticket-status">Status</span>
                 </div>
-                <div className="ticket-row">
-                    <span className="ticket-check"><i className="far fa-envelope"></i></span>
-                    <span className="ticket-id">7489-MJB-166</span>
-                    <span className="ticket-subject">subject</span>
-                    <span className="ticket-name">Customer</span>
-                    <span className="ticket-status">Status</span>
-                </div>
-                <div className="ticket-row">
-                    <span className="ticket-check"><i className="far fa-envelope"></i></span>
-                    <span className="ticket-id">7489-MJB-166</span>
-                    <span className="ticket-subject">subject</span>
-                    <span className="ticket-name">Customer</span>
-                    <span className="ticket-status">Status</span>
-                </div>
-                <div className="ticket-row">
-                    <span className="ticket-check"><i className="far fa-envelope"></i></span>
-                    <span className="ticket-id">7489-MJB-166</span>
-                    <span className="ticket-subject">subject</span>
-                    <span className="ticket-name">Customer</span>
-                    <span className="ticket-status">Status</span>
-                </div>
+                {this.props.tickets.map((ticket, index) => {
+                    return (
+                        <div
+                            className="ticket-row"
+                            key={index}
+                            id={ticket.id}
+                            onClick={() => {
+                                this.props.history.push(`/staff/tickets/${ticket.id}`);
+                            }}
+                        >
+                            <span className="ticket-check"><i className="far fa-envelope"></i></span>
+                            <span className="ticket-id">{ticket.track_id}</span>
+                            <span className="ticket-subject">{ticket.subject}</span>
+                            <span className="ticket-name">{ticket.name}</span>
+                            <span className="ticket-status">{ticketStatus[ticket.status]}</span>
+                        </div>
+                    );
+                })}
             </div>
             </React.Fragment>
         );
