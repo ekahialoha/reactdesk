@@ -71,7 +71,6 @@ class Staff extends Component {
         });
     }
 
-
     handleNewSubmit = (name, email, password) => {
         axios.post('/api/users', {
             name: name,
@@ -88,6 +87,26 @@ class Staff extends Component {
             });
         }).catch((err) => {
             console.log('Staff/Staff.handleNewSubmit', err);
+        });
+    }
+
+    removeStaffFromArray = (index) => {
+        this.setState((prevState) => {
+            prevState['staff'].splice(index, 1);
+            return {
+                staff: prevState['staff']
+            };
+        });
+    }
+
+    handleDelete = (e) => {
+        e.persist();
+
+        axios.delete(`/api/users/${parseInt(e.target.attributes.id.value)}`)
+        .then((res) => {
+            this.removeStaffFromArray(parseInt(e.target.attributes.index.value));
+        }).catch((err) => {
+            console.log('Staff/Staff.handleDelete', err);
         });
     }
 

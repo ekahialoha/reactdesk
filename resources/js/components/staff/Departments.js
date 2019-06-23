@@ -38,8 +38,8 @@ class Departments extends Component {
             };
         }, () => {
             if (this.state.newFormShow) {
-                handleScroll(this.newFocus)
-    ;        }
+                handleScroll(this.newFocus);
+            }
         });
     }
 
