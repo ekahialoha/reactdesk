@@ -19,7 +19,7 @@ use Illuminate\Http\Request;
 
 
 Route::group([
-    'middleware' => ['api'],
+    'middleware' => 'api',
     'prefix' => 'auth'
 ], function ($router) {
 
@@ -32,5 +32,6 @@ Route::group([
 Route::apiResources([
     'departments' => 'DepartmentController',
     'tickets' => 'TicketController',
-    'replies' => 'ReplyController'
+    'replies' => 'ReplyController',
+    'users' => 'UserController',
 ]);
