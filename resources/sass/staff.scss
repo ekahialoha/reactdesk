@@ -76,9 +76,6 @@
 .ticket-row {
     display: grid;
     grid-template-columns: 25px 95px 1fr 1fr;
-    > * {
-        // border: 1px solid green;
-    }
     span {
         font-size: .9em;
     }
@@ -93,7 +90,7 @@
     }
 }
 .ticket-row:hover {
-    background: white;
+    background: $offwhite;
 }
 div.ticket-row + div.ticket-row {
     padding-top: 3px;
@@ -109,7 +106,7 @@ div.ticket-row + div.ticket-row {
     }
 }
 .ticket-row-heading:hover {
-    background: $offwhite;
+    background: inherit;
 }
 
 .staff-logo-block a:hover, .logo-block a:active {
