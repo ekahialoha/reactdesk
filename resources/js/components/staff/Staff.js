@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { ListGroup, Collapse, Card } from 'react-bootstrap';
 
+import StaffForm from './StaffForm';
+import { handleScroll } from '../Helpers';
+
 class Staff extends Component {
     constructor(props) {
         super(props);
@@ -8,7 +11,10 @@ class Staff extends Component {
         this.state = {
             staff: [],
             editFormShow: null,
+            newFormShow: false,
         };
+
+        this.newFocus = React.createRef();
     }
 
     fetchUsers = () => {
@@ -25,7 +31,7 @@ class Staff extends Component {
     handleEditFormShow = (e) => {
         let userId = parseInt(e.target.attributes.index.value);
         if (this.state.editFormShow === userId) {
-            departmentId = null;
+            userId = null;
         }
         this.setState({
             editFormShow: userId,
@@ -37,8 +43,31 @@ class Staff extends Component {
             prevState.newFormShow = !prevState.newFormShow;
 
             return {
-                showForm: prevState.newFormShow
+                newFormShow: prevState.newFormShow,
             };
+        }, () => {
+            if (this.state.newFormShow) {
+                handleScroll(this.newFocus);
+            }
+        });
+    }
+
+    handleNewSubmit = (name, email, password) => {
+        axios.post('/api/users', {
+            name: name,
+            email: email,
+            password: password
+        }).then((res) => {
+            this.setState((prevState) => {
+                prevState.staff.push(res.data);
+
+                return {
+                    staff: prevState.staff,
+                    newFormShow: false,
+                };
+            });
+        }).catch((err) => {
+            console.log('Staff/Staff.handleNewSubmit', err);
         });
     }
 
@@ -91,7 +120,11 @@ class Staff extends Component {
                     </Card.Header>
                     <Collapse in={this.state.newFormShow}>
                         <Card.Body>
-                            Create new users here
+                            <StaffForm
+                                handleSubmit={this.handleNewSubmit}
+                                focus={this.newFocus}
+                                button="Create"
+                            />
                         </Card.Body>
                     </Collapse>
                 </Card>
