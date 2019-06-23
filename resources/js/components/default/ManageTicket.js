@@ -18,7 +18,6 @@ class ManageTicket extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.history.push(`/ticket/view/${encodeURI(this.state.track_id)}`);
-        // console.log(this.state.track_id, this.state.email);
     }
 
     handleChanges = (e) => {

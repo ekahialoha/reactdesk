@@ -58,13 +58,7 @@ class CreateTicket extends Component {
             priority: this.state.priority
         }).then(res => {
             console.log('CreateTicket.handleSubmit SUCCESS');
-            this.setState({
-                name: '',
-                email: '',
-                subject: '',
-                message: '',
-                priority: 0
-            });
+            this.props.history.push(`/ticket/view/${res.data.track_id}`);
         }).catch(err => {
             console.log('CreateTicket.handleSubmit', err);
         });
