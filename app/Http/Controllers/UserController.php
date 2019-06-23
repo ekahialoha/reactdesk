@@ -65,7 +65,7 @@ class UserController extends Controller
 
             if ($user->id === $currentUser->id) {
                 throw new Exception('Unable to make changes to your own account');
-            } elseif ($user->id === env('PROTECTED_USER') {
+            } elseif ($user->id === env('PROTECTED_USER')) {
                 throw new Exception('Protected User');
             }
 
@@ -108,7 +108,7 @@ class UserController extends Controller
 
             if ($user->id === $currentUser->id) {
                 throw new Exception('Unable to make changes to your own account');
-            } elseif ($user->id === env('PROTECTED_USER') {
+            } elseif ($user->id === env('PROTECTED_USER')) {
                 throw new Exception('Protected User');
             }
 

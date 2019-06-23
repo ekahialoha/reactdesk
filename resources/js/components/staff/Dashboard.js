@@ -5,6 +5,7 @@ import { Container, Nav, Navbar } from 'react-bootstrap';
 import Departments from './Departments';
 import TicketList from './TicketList';
 import ManageTicket from './ManageTicket';
+import Staff from './Staff';
 import Footer from '../default/Footer';
 
 class Dashboard extends Component {
@@ -76,6 +77,10 @@ class Dashboard extends Component {
 
     ticketsHold = (props) => {
         return <TicketList header="On Hold" status="hold" {...props} />;
+    }
+
+    staffManage = (props) => {
+        return <Staff {...props} />;
     }
 
     render() {
@@ -161,9 +166,8 @@ class Dashboard extends Component {
                             <Route path="/staff/tickets/all" component={this.ticketsAll} />
                             <Route path="/staff/tickets/hold" component={this.ticketsHold} />
                             <Route path="/staff/tickets/:id" component={this.manageTicket} />
-                            <Route path="/staff/manage-staff" render={() => <h1>Staff</h1>} />
                             <Route path="/staff/departments" component={Departments} />
-                            <Route path="/staff/manage-staff" render={() => <h1>Staff</h1>} />
+                            <Route path="/staff/manage-staff" component={this.staffManage} />
                             <Route /*path="/staff/tickets/open"*/ component={this.ticketsOpen} />
                         </Switch>
                     </main>
