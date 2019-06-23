@@ -52,6 +52,26 @@ class Staff extends Component {
         });
     }
 
+    handleEditSubmit = (name, email, password, index, id) => {
+        axios.put(`/api/users/${id}`, {
+            name: name,
+            email: email,
+            status: password,
+        }).then((res) => {
+            this.setState((prevState) => {
+                prevState.staff[index] = res.data;
+
+                return {
+                    staff: prevState.staff,
+                    editFormShow: null,
+                };
+            });
+        }).catch((err) => {
+            console.log('Staff/Staff.handleEditSubmit', err);
+        });
+    }
+
+
     handleNewSubmit = (name, email, password) => {
         axios.post('/api/users', {
             name: name,
@@ -85,7 +105,14 @@ class Staff extends Component {
                             <ListGroup.Item key={user.id}>
                             {this.state.editFormShow === index ?
                                 <React.Fragment>
-                                    Edit From
+                                    <StaffForm
+                                        index={index}
+                                        handleSubmit={this.handleEditSubmit}
+                                        handleClose={this.handleEditFormShow}
+                                        focus={this.newFocus}
+                                        user={user}
+                                        button="Update"
+                                    />
                                 </React.Fragment> :
                                 <React.Fragment>
                                  {user.name}

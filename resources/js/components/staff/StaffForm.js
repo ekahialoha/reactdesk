@@ -9,7 +9,7 @@ class StaffForm extends Component {
 
         this.state = {
             name: 'user' in this.props ? this.props.user.name : '',
-            email: 'user' in this.props ? this.props.user.description : '',
+            email: 'user' in this.props ? this.props.user.email : '',
             password: '',
         };
     }
