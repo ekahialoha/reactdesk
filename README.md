@@ -17,6 +17,9 @@ This app is:
 
 - Deployed on [Heroku](https://reactdesk.herokuapp.com/)
 - Hosted on [GitHub](https://github.com/ekahialoha/reactdesk)
+- Staff Login
+-- Email: demo@localhost
+-- Password: pa$$word1
 
 
 ### About This App
