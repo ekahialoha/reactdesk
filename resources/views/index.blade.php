@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Laravel</title>
+        <title>ReactDesk</title>
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         <script src="https://kit.fontawesome.com/28ef3af82a.js"></script>
     </head>
