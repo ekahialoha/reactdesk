@@ -13,6 +13,25 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
+], function ($router) {
+
+    Route::post('/', 'Auth\AuthController@authenticate');
+    Route::post('/iam', 'Auth\AuthController@checkIAm');
+    Route::post('/terminate', 'Auth\AuthController@terminate');
+    // Route::post('/refresh', 'Auth\AuthController@refresh');
 });
+
+Route::apiResources([
+    'departments' => 'DepartmentController',
+    'tickets' => 'TicketController',
+    'replies' => 'ReplyController',
+    'users' => 'UserController',
+]);

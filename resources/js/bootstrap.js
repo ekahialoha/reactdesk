@@ -7,6 +7,15 @@ window._ = require('lodash');
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
+ window.ticketStatus = [
+     undefined,
+     'Awaiting Reply',
+     'Open',
+     'On Hold',
+     'Closed',
+ ];
+
+
 window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';

@@ -1,8 +1,152 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Lato|Yanone+Kaffeesatz');
 
 // Variables
 @import 'variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+body {
+    background-color: $offwhite;
+    color: $eggplant;
+}
+
+header {
+    background: $light-blue;
+    margin-bottom: 2em;
+}
+
+textarea.form-control {
+  height: 10em;
+}
+
+dt {
+    font-weight: bold;
+}
+
+.logo-block {
+    color: $offwhite;
+    font-family: $logo-font-family;
+    letter-spacing: .4em;
+    padding: 1em 2em;
+    text-transform: uppercase;
+}
+
+.logo-block i {
+    font-size: 2.75em;
+}
+
+.logo-block h1 {
+    display: inline-block;
+    font-size: 3.5em;
+}
+
+.logo-block a {
+    color: $offwhite;
+}
+
+.logo-block a:hover, .logo-block a:active {
+    color: $eggplant;
+}
+
+.nav {
+    margin-left: 2em;
+}
+
+.nav-tabs {
+    border-bottom: 1px solid $eggplant;
+}
+
+.nav-tabs .nav-link.active {
+    border-style: solid;
+    border-color: $eggplant $eggplant $offwhite $eggplant;
+    border-width: 1px;
+}
+
+.nav-tabs .nav-link:hover,
+.nav-tabs .nav-link:focus {
+    background-color: $eggplant;
+    border-color: $eggplant;
+    color: $offwhite;
+}
+
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+    background-color: $eggplant;
+    border-color: $eggplant;
+    color: $offwhite;
+}
+
+.list-group a:hover {
+    text-decoration: none;
+}
+
+h2 {
+    border-bottom: 1px solid $pale-cyan;
+    font-family: $logo-font-family;
+    letter-spacing: .2em;
+    margin-bottom: .6em;
+    padding-bottom: .3em;
+    text-transform: uppercase;
+}
+
+.btn-reset {
+    margin-left: 1.1em;
+}
+
+.message-block {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.message-block .badge {
+    margin-left: .5em;
+}
+
+.card-header {
+    font-size: 1.2em;
+    text-align: center;
+    > i {
+        font-size: .8em;
+        margin-left: .5em;
+    }
+}
+
+.fixed-bottom-space {
+    margin-bottom: 6em;
+}
+
+.footer {
+    background-color: $eggplant;
+    border-top: 1px solid $light-blue;
+    color: $offwhite !important;
+    font-size: .9em;
+    padding: .8em 0 .1em 0;
+    text-align: center;
+}
+
+.footer a {
+    color: $offwhite;
+}
+
+.footer a:hover, .footer > div a:hover {
+    text-decoration: none;
+    color: $light-blue !important;
+}
+
+.footer i {
+    font-size: 1.7em;
+    margin-right: .3em;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+@import 'staff';
